@@ -1,19 +1,29 @@
 import React from 'react';
-import '../index.css';
+import { useNavigate } from 'react-router-dom';
 
-function LoginPage() {
+export function LoginPage(props) {
+
+  const navigate = useNavigate();
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    navigate('/main');
+  };
+
   return (
     <div>
       {/* Header */}
       <header className="login-header">
-        <div className="login-logo">
-          <span>W</span> DAWGPOOL
-        </div>
+      <div className="nav-left d-flex align-items-center">
+        <img src="/assets/uw_logo.png" alt="UW Logo" className="login-header-logo"/>
+        <h1 className="ms-2">DAWGPOOL</h1>
+      </div>
         <div className="login-nav-links">
           <a href="#login">LOGIN</a>
-          <span>-or-</span>
+          <span>-or-</span>  
           <a href="#signup">SIGNUP</a>
         </div>
+        {/* need to be updated */}
       </header>
 
       {/* Main Content */}
@@ -33,7 +43,7 @@ function LoginPage() {
         {/* Login Section */}
         <div className="login-form-section">
           <h2 className="login-title">LOGIN</h2>
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleLogin}>
             <div className="login-form-group">
               <label>Email</label>
               <input type="email" placeholder="Enter your email" />
@@ -54,8 +64,10 @@ function LoginPage() {
           </form>
         </div>
       </div>
+
+      <footer className="footer">
+        &copy; Copyright 2024
+      </footer>
     </div>
   );
 }
-
-export default LoginPage;
