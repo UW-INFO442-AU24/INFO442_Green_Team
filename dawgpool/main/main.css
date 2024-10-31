@@ -1,0 +1,129 @@
+/* Navbar */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4b2e83;
+    padding:20px 20px;
+    margin: 0;
+}
+
+.navbar-logo {
+    height: 60px;
+    width: auto;
+    margin-left: 0;
+}
+
+nav h1 {
+    color: white;
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 45px;
+    list-style: none;
+    margin: 0;
+    padding-right: 20px;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    position: relative;
+    padding: 5px 0;
+}
+
+nav ul a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+nav ul a:hover::after {
+    width: 100%;
+}
+
+/* Main Page */
+body {
+    background-color: #f4e2b7;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4e2b7;
+    padding: 30px;
+}
+
+.container-fluid {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px 40px;
+    margin: 0;
+}
+
+.heading-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.profile-section {
+    max-width: 30%;
+}
+
+.schedule-section {
+    max-width: 70%;
+}
+
+.schedule-title {
+    text-align: center;
+}
+
+.schedule-section ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+.schedule-section span {
+    text-align: right;
+}
+
+.stars {
+    color: #6740b4;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
