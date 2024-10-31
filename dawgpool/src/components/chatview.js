@@ -1,6 +1,7 @@
+// src/components/ChatView.js
 import React, { useState } from 'react';
 
-const ChatView = ({ selectedChat }) => {
+const Chatview = ({ selectedChat }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
@@ -17,7 +18,7 @@ const ChatView = ({ selectedChat }) => {
         <>
           {/* Chat Header */}
           <div className="chat-header">
-            <img src="/assets/profile.jpg" alt="profile-photo" className="profile-photo" />
+            <img src={selectedChat.img} alt="Selected Profile" id="chat-profile-img" />
             <div className="profile-info">
               <h2 id="chat-profile-name">{selectedChat.name}</h2>
               <span id="chat-profile-year">Year: Senior</span>
@@ -58,5 +59,5 @@ const ChatView = ({ selectedChat }) => {
   );
 };
 
-export default ChatView;
+export default Chatview;
 
