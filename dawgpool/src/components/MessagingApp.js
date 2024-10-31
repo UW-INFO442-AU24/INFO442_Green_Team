@@ -1,6 +1,6 @@
 // src/components/MessagingApp.js
 import React, { useState } from 'react';
-import Sidebar from './SideBar';
+import Sidebar from './Sidebar';
 import ChatView from './Chatview';
 
 const MessagingApp = () => {
