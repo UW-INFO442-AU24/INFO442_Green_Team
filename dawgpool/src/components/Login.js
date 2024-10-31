@@ -7,7 +7,7 @@ export function LoginPage(props) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    navigate('/main');
+    navigate('/');
   };
 
   return (
