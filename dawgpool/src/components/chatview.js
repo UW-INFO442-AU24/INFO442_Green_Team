@@ -1,4 +1,3 @@
-// src/components/ChatView.js
 import React, { useState } from 'react';
 
 const ChatView = ({ selectedChat }) => {
