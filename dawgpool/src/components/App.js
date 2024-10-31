@@ -16,7 +16,7 @@ function App(props) {
       {!isLoginPage && <Navbar />}
 
       <Routes>
-        <Route path="/n" element={<MainPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
