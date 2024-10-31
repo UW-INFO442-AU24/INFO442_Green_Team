@@ -1,10 +1,5 @@
 
-body {
-    margin: 0;
-    height: 100%;
-    border: 40px solid #F4E2B7;
-    box-sizing: border-box;
-}
+
 
 .profile-container {
   display: flex;
@@ -21,8 +16,9 @@ body {
     padding-bottom: 10px;
 }
 
-h3 {
+.user-info h3 {
     font-size: 3rem;
+    margin-bottom: 15px;
 }
 
 .user-info {
@@ -57,21 +53,18 @@ h3 {
     color: gray;
 }
 
-h3 {
-    margin-bottom: 15px;
-}
 
 .form-item {
     margin-bottom: 15px;
 }
 
-label {
+.form-information label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-textarea, input[type="text"], input[type="time"], input[type="number"], select {
+.form-information textarea, input[type="text"], input[type="time"], input[type="number"], select {
     width: 100%;
     padding: 10px;
     max-width: 800px;

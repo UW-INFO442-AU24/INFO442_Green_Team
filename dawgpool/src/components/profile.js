@@ -1,7 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import './profile.css';
-import image from './assets/profile.webp';
+import { useState } from 'react'; 
 
 function Profile() {
     const [form, setForm] = useState({
@@ -36,7 +34,7 @@ function Profile() {
   return (
     <div className="profile-container">
             <div className="user-info">
-                <img src={image} alt="profile-photo" className="profile-photo" />
+                <img src="/assets/profile.webp" alt="profile-photo" className="profile-photo" />
                 <h3>Jimmy J.</h3>
 
                 <div className="star-rating">

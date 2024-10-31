@@ -293,6 +293,94 @@ footer {
     bottom: 0;
     color: rgb(0, 0, 0);
 } 
+/* Profile Page */
+
+
+
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 20px;
+    margin: 0 auto;
+  }
+  
+  .profile-photo {
+      width: 300px;
+      height: 300px;
+      border-radius: 10%;
+      padding-bottom: 10px;
+  }
+  
+  .user-info h3 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+  }
+  
+  .user-info {
+    text-align: center;
+    width: 35%;
+    padding-right: 20px;
+  }
+  
+  .form-information {
+    width: 65%;
+  
+  }
+  
+  .rating-number {
+      margin-top: 10px;
+      font-size: 2rem;
+  }
+  
+  .rating-score {
+      font-size: 2rem;
+      color: #ff9900;
+  }
+  
+  .star-amount {
+      color: #ff9900;
+      display: block;
+      font-size: 1.5rem;
+  }
+  
+  .reviews {
+      font-size: 1rem;
+      color: gray;
+  }
+  
+  
+  .form-item {
+      margin-bottom: 15px;
+  }
+  
+  .form-information label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+  }
+  
+  .form-information textarea, input[type="text"], input[type="time"], input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      max-width: 800px;
+      margin-top: 5px;
+      border: 1px solid rgb(166, 160, 160);
+      border-radius: 5px;
+      box-sizing: border-box;
+  }
+  
+  .submit button {
+      color: black;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  
+  .submit button:hover {
+      background-color: #F4E2B7;
+  }
+  
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -354,6 +442,9 @@ footer {
 
     .login-form-section {
         padding: 1rem;
+    }
+    .profile-container {
+        flex-direction: column;
     }
 }
 
