@@ -4,6 +4,7 @@ import { LoginPage } from './Login.js';
 import MainPage from './MainPage.js';
 import { Navbar } from './NavBar.js';
 import Profile from './Profile.js'
+import MessagingApp from './MessagingApp.js';
 
 
 function App(props) {

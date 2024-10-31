@@ -377,7 +377,147 @@ footer {
   .submit button:hover {
       background-color: #F4E2B7;
   }
-  
+
+
+  /* Sidebar (Chats List) */
+.chats-sidebar {
+    width: 300px;
+    background-color: #f5f5f5;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.chat-item.active, .chat-item:hover {
+    background-color: #e0e0e0;
+}
+
+.chat-item img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-info {
+    flex: 1;
+}
+
+.chat-info h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.chat-info p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.time {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Chat View (Message Details) */
+.chat-view {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    position: relative; /* To contain the input box */
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.chat-header img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.profile-info h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-info span {
+    font-size: 14px;
+    color: #555;
+}
+
+.schedule-link {
+    display: block;
+    color: #4b2e83;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+}
+/* Message Input Area */
+.message-input {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f5f5f5;
+}
+
+.message-input input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e9e9e9;
+    font-size: 16px;
+    outline: none;
+}
+
+.message-input button {
+    background-color: #4b2e83; /* Purple background for the send button */
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.message-input button:hover {
+    background-color: #3a2466; /* Darker purple on hover */
+}
+
+.message-input button svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -409,6 +549,13 @@ footer {
 
     .login-title {
         font-size: 1.5rem;
+    }
+    .chats-sidebar {
+        width: 200px; /* Smaller sidebar */
+    }
+
+    .chat-view {
+        flex: 1;
     }
 }
 
@@ -442,6 +589,13 @@ footer {
     }
     .profile-container {
         flex-direction: column;
+    }
+    .chats-sidebar {
+        display: none; /* Hide sidebar */
+    }
+
+    .chat-view {
+        width: 100%; /* Make chat view take full width */
     }
 }
 
