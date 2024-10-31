@@ -168,7 +168,7 @@ function Profile() {
                     <div className="form-item">
                         <label htmlFor="driversLicense">Driver's License #:</label>
                         <input
-                            type="number"
+                            type="text"
                             id="drivers-license"
                             name="driversLicense"
                             value={form.driversLicense}
