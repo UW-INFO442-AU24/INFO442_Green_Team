@@ -23,10 +23,13 @@
       </ul>
     </nav>
 
+    <!-- Sidebar Toggle Button for smaller screens -->
+    <button id="toggle-sidebar" class="btn btn-primary d-lg-none">Toggle Sidebar</button>
+
     <div class="messaging-container">
       <!-- Sidebar (Chats List) -->
       <div class="chats-sidebar">
-        <div class="chat-item active">
+        <div class="chat-item active" data-chat="kevin" data-message="Pls take a look at the images.">
           <img src="profile.jpg" alt="Profile Picture">
           <div class="chat-info">
             <h4>Kevin</h4>
@@ -34,7 +37,7 @@
           </div>
           <span class="time">18:31</span>
         </div>
-        <div class="chat-item">
+        <div class="chat-item" data-chat="designers" data-message="Hello guys, we have discussed about...">
           <img src="designers.png" alt="Profile Picture">
           <div class="chat-info">
             <h4>Fullstack Designers</h4>
@@ -48,29 +51,32 @@
       <!-- Chat View (Message Details) -->
       <div class="chat-view">
         <div class="chat-header">
-          <img src="profile.jpg" alt="Selected Profile">
+          <img src="profile.jpg" alt="Selected Profile" id="chat-profile-img">
           <div class="profile-info">
-            <h2>Kevin ⭐⭐⭐⭐⭐</h2>
-            <span>Year: Senior</span>
+            <h2 id="chat-profile-name">Kevin ⭐⭐⭐⭐⭐</h2>
+            <span id="chat-profile-year">Year: Senior</span>
             <a href="#" class="schedule-link">Click for Schedule</a>
           </div>
         </div>
-        <div class="messages">
+        <div class="messages" id="messages">
           <!-- Messages will go here -->
         </div>
         <div class="message-input-box message-input bg-light p-3 d-flex" style="position: relative;">
-            <input type="text" class="form-control me-2" placeholder="Type your message...">
-            <button class="btn btn-primary">
+            <input type="text" class="form-control me-2" id="message-input" placeholder="Type your message...">
+            <button id="send-message" class="btn btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M14.146 8.354a.5.5 0 0 0 0-.708l-6-6a.5.5 0 1 0-.708.708L12.293 8H1.5a.5.5 0 0 0 0 1h10.793l-4.855 4.854a.5.5 0 0 0 .708.708l6-6z"/>
               </svg>
             </button>
           </div>
-          
       </div>
     </div>
+    
+    <!-- JavaScript for the component -->
+    <script src="messaging.js"></script>
   </body>
 </html>
+
 
 
 
