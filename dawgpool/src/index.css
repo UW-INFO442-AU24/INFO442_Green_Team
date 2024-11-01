@@ -378,6 +378,23 @@ footer {
       background-color: #F4E2B7;
   }
 
+  /* Edit Profile Page */
+
+  .edit-profile-section h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .edit-profile-button {
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-profile-button:hover {
+    text-decoration: underline;
+}
+
 
   /* Sidebar (Chats List) */
 .chats-sidebar {
