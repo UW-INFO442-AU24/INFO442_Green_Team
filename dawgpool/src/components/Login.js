@@ -64,10 +64,6 @@ export function LoginPage(props) {
           </form>
         </div>
       </div>
-
-      <footer className="footer">
-        &copy; Copyright 2024
-      </footer>
     </div>
   );
 }

@@ -9,13 +9,13 @@ export function Navbar(props) {
       </div>
       <ul className="d-flex list-unstyled mb-0">
         <li className="mx-2">
-          <a href="/" aria-label="Mainpage">Home</a>
+          <strong><a href="/" aria-label="Mainpage">Home</a></strong>
         </li>
         <li className="mx-2">
-          <a href="/message" aria-label="Message">Message</a>
+          <strong><a href="/message" aria-label="Message">Message</a></strong>
         </li>
         <li className="mx-2">
-          <a href="/profile" aria-label="Profile">Profile</a>
+          <strong><a href="/profile" aria-label="Profile">Profile</a></strong>
         </li>
       </ul>
     </nav>

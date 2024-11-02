@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: 'Comfortaa', sans-serif;
+    font-family: 'Noto Sans', 'Open Sans', sans-serif;
     background-color: #f4e2b7;
     margin: 0;
     padding: 0;
@@ -228,14 +228,21 @@ nav ul a:hover::after {
 .container-fluid {
     background-color: white;
     border-radius: 10px;
-    padding: 40px 40px;
+    padding: 40px 70px;
     margin: 0;
 }
 
+.container-fluid h1 {
+    margin-top: 30px;
+    font-size: 3rem;
+    margin-bottom: -30px;
+}
+
 .heading-logo {
-    height: 50px;
+    height: 90px;
     width: auto;
-    margin-right: 10px;
+    margin-top: 30px;
+    margin-bottom: -40px;
 }
 
 .profile-pic {
@@ -284,6 +291,29 @@ nav ul a:hover::after {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.custom-col-padding {
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+  
+
+.search-group {
+    padding: 50px;
+    max-width: 600px;
+}
+
+.search-input {
+    height: 50px;
+    border-right: 0;
+}
+
+.search-button {
+    margin-top: 5px;
+    height: 50px;
+    border-left: 0;
+    color: #4A148C;
+}
+
 /* Footer */
 footer {
     background-color: #c2b1cb;
@@ -299,66 +329,68 @@ footer {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-    padding: 20px;
+    padding: 40px 40px;
     margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
   }
   
-  .profile-photo {
+.profile-photo {
       width: 300px;
       height: 300px;
       border-radius: 10%;
       padding-bottom: 10px;
   }
   
-  .user-info h3 {
+.user-info h3 {
       font-size: 3rem;
       margin-bottom: 15px;
   }
   
-  .user-info {
+.user-info {
     text-align: center;
     width: 35%;
     padding-right: 20px;
   }
   
-  .form-information {
+.form-information {
     width: 65%;
   
   }
   
-  .rating-number {
+.rating-number {
       margin-top: 10px;
       font-size: 2rem;
   }
   
-  .rating-score {
+.rating-score {
       font-size: 2rem;
-      color: #ff9900;
+      color: #6740b4;
   }
   
-  .star-amount {
-      color: #ff9900;
+.star-amount {
+      color: #6740b4;
       display: block;
       font-size: 1.5rem;
   }
   
-  .reviews {
+.reviews {
       font-size: 1rem;
       color: gray;
   }
   
   
-  .form-item {
+.form-item {
       margin-bottom: 15px;
   }
   
-  .form-information label {
+.form-information label {
       display: block;
       font-weight: bold;
       margin-bottom: 5px;
   }
   
-  .form-information textarea, input[type="text"], input[type="time"], input[type="number"], select {
+.form-information textarea, input[type="text"], input[type="time"], input[type="number"], select {
       width: 100%;
       padding: 10px;
       max-width: 800px;
@@ -368,13 +400,13 @@ footer {
       box-sizing: border-box;
   }
   
-  .submit button {
+.submit button {
       color: black;
       border-radius: 5px;
       cursor: pointer;
   }
   
-  .submit button:hover {
+.submit button:hover {
       background-color: #F4E2B7;
   }
 
