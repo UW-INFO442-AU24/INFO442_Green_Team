@@ -1,14 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-export function LoginPage(props) {
-
-  const navigate = useNavigate();
-
-  const handleLogin = (event) => {
-    event.preventDefault();
-    navigate('/');
-  };
+export function LoginPage({ onGoogleSignIn }) {
 
   return (
     <div>
@@ -19,11 +11,8 @@ export function LoginPage(props) {
         <h1 className="ms-2">DAWGPOOL</h1>
       </div>
         <div className="login-nav-links">
-          <a href="#login">LOGIN</a>
-          <span>-or-</span>  
-          <a href="#signup">SIGNUP</a>
+          <p><strong>Login with your UW Account!</strong></p>
         </div>
-        {/* need to be updated */}
       </header>
 
       {/* Main Content */}
@@ -43,25 +32,9 @@ export function LoginPage(props) {
         {/* Login Section */}
         <div className="login-form-section">
           <h2 className="login-title">LOGIN</h2>
-          <form className="login-form" onSubmit={handleLogin}>
-            <div className="login-form-group">
-              <label>Email</label>
-              <input type="email" placeholder="Enter your email" />
-            </div>
-            <div className="login-form-group">
-              <label>Password</label>
-              <input type="password" placeholder="Enter your password" />
-            </div>
-            <div className="login-form-group login-remember-me">
-              <input type="checkbox" />
-              <label>Remember me</label>
-            </div>
-            <button type="submit" className="login-btn">LOGIN</button>
-            <a href="#forgot" className="login-forgot-password">Forgot Password?</a>
-            <p className="login-signup-text">
-              Need an account? <a href="#signup" className="login-signup-link">SIGN UP</a>
-            </p>
-          </form>
+          <button className="btn btn-primary" onClick={onGoogleSignIn}>
+            Login with UW Email
+          </button>
         </div>
       </div>
     </div>

@@ -1,42 +1,127 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Table, Row, Col } from 'react-bootstrap';
+import { ref, get, set } from "firebase/database";
+import { CreateProfileModal } from './CreateProfileModal';
 
-const EditProfile = () => {
-    return (
-        <div className="content-wrapper">
-            <div className="profile-container">
-                <div className="user-info">
-                    <img src="/assets/profile.webp" alt="profile-photo" className="profile-photo" />
-                    <h3>Jimmy J.</h3>
+function Profile({ user, database }) {
+    const navigate = useNavigate();
+    const [profile, setProfile] = useState(null);
+    const [showCreateProfileModal, setShowCreateProfileModal] = useState(false);
 
-                    <div className="star-rating">
-                        <span className="rating-number">4.0</span>
-                        <span className="star-amount">★★★★☆</span>
-                        <span className="reviews">10 Reviews</span>
+    useEffect(() => {
+        if (user) {
+            const profileRef = ref(database, `profiles/${user.uid}`);
+            get(profileRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    setProfile(snapshot.val());
+                } else {
+                    setProfile(null);
+                }
+            });
+        }
+    }, [user, database]);
+
+    const handleCreateProfile = (formData) => {
+        const profileRef = ref(database, `profiles/${user.uid}`);
+        set(profileRef, formData)
+            .then(() => {
+                setProfile(formData);
+                setShowCreateProfileModal(false);
+            })
+            .catch(error => console.error("Error saving profile:", error));
+    };
+
+    if (!user) {
+        return (
+            <div className="content-wrapper">
+                <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
+                    <div className="row text-center">
+                        <h3>You are not logged in</h3>
+                    </div>
+                    <div className="row mt-3">
+                        <Button onClick={() => navigate('/login')} className="btn btn-primary">
+                            Login with your UW Email
+                        </Button>
                     </div>
                 </div>
-
-                <div className="edit-profile-section">
-                    <h3>Profile</h3>
-
-                    <p><strong>First Name:</strong> Jimmy</p>
-                    <p><strong>Last Name:</strong> Jacobson</p>
-                    <p><strong>Bio:</strong> Junior majoring in Computer Science.</p>
-                    <p><strong>Interests:</strong> Traveling, Eating, Walking.</p>
-                    <p><strong>Clubs/Sports/Extracurricular:</strong> Coding Club, Soccer, Basketball</p>
-                    <p><strong>Year:</strong> Junior</p>
-                    <p><strong>Address:</strong> 4516 Elliot Ave</p>
-                    <p><strong>City:</strong> Seattle</p>
-                    <p><strong>State:</strong> WA</p>
-                    <p><strong>Schedule:</strong> Monday, Wednesday, Thursday</p>
-                    <p><strong>Start Time:</strong> 10:30 AM</p>
-                    <p><strong>End Time:</strong> 3:30 PM</p>
-                    <p><strong>Driver's License #:</strong> WDL3431B3214</p>
-
-                    <button className="edit-profile-button">Edit Profile</button>
-                </div>
             </div>
+        );
+    }
+
+    return (
+        <div className="content-wrapper p-4">
+            {profile ? (
+                <div className="profile-container d-flex flex-column align-items-start">
+                    <h2 className="mb-4 text-center w-100">Profile Information</h2>
+
+                    <div className="mb-3">
+                        <h5><strong>Name:</strong> {profile.firstName} {profile.lastName}</h5>
+                    </div>
+                    <div className="mb-3">
+                        <p><strong>Year:</strong> {profile.year}</p>
+                    </div>
+                    <div className="mb-3">
+                        <p><strong>Hobbies:</strong> {profile.hobbies}</p>
+                    </div>
+                    <div className="mb-3">
+                        <p><strong>Address:</strong> {profile.address}</p>
+                    </div>
+                    <div className="mb-3">
+                        <p><strong>Region:</strong> {profile.region}</p>
+                    </div>
+                    {profile.isDriver && (
+                        <div className="mb-3">
+                            <p><strong>Driver's License:</strong> {profile.driverLicense}</p>
+                        </div>
+                    )}
+
+                    <h4 className="mt-4">Schedule</h4>
+                    <Table bordered className="mt-2">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Go to School</th>
+                                <th>Back Home</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Object.entries(profile.schedule).map(([day, times]) => (
+                                <tr key={day}>
+                                    <td><strong>{day}</strong></td>
+                                    <td>{times.goToSchool || 'N/A'}</td>
+                                    <td>{times.backHome || 'N/A'}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+
+                    <div className="mt-4 d-flex">
+                        <Button variant="primary" onClick={() => setShowCreateProfileModal(true)}>Edit Profile</Button>
+                        <Button variant="danger" onClick={() => navigate('/login')} className="ms-2">Log Out</Button>
+                    </div>
+                </div>
+            ) : (
+                <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
+                    <div className="row text-center">
+                        <h3>You have not created a profile yet</h3>
+                    </div>
+                    <div className="row mt-3">
+                        <Button variant="primary" onClick={() => setShowCreateProfileModal(true)}>Create Profile</Button>
+                        <Button variant="danger" className="mt-3" onClick={() => navigate('/login')}>Log Out</Button>
+                    </div>
+                </div>
+            )}
+
+            <CreateProfileModal
+                show={showCreateProfileModal}
+                onHide={() => setShowCreateProfileModal(false)}
+                onSave={handleCreateProfile}
+                initialData={profile}
+            />
         </div>
     );
-};
+}
 
-export default EditProfile;
+export default Profile;
