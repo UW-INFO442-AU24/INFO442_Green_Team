@@ -10,6 +10,10 @@ export function LoginPage(props) {
     navigate('/main');
   };
 
+  const handleSignupClick = () => {
+    navigate('/signup'); 
+  };
+
   return (
     <div>
       {/* Header */}
@@ -59,7 +63,8 @@ export function LoginPage(props) {
             <button type="submit" className="login-btn">LOGIN</button>
             <a href="#forgot" className="login-forgot-password">Forgot Password?</a>
             <p className="login-signup-text">
-              Need an account? <a href="#signup" className="login-signup-link">SIGN UP</a>
+              Need an account?
+              <span onClick={handleSignupClick} className="login-signup-link" style={{ cursor: 'pointer', color: 'purple', textDecoration: 'underline' }}>SIGN UP</span>
             </p>
           </form>
         </div>

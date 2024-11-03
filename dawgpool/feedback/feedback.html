@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Sammy Bharadwaj, Liuhan Ke, Tony Ngo, Keaton Staggs, Kevin Tat">
     <meta name="description" content="DAWGPOOL">
+    <title>DAWGPOOL</title>
 
-    <!-- Favicon, will import later-->
+    <!-- Favicon (will import later) -->
     <!-- <link rel="icon" type="image/x-icon" href="img/favicon.png"> -->
 
     <!-- Bootstrap -->
@@ -16,64 +17,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Ubuntu&display=swap" rel="stylesheet">
 
-    <title>DAWGPOOL</title>
-
-    <style>
-      body {
-        background-color: #F5E6C8;
-        font-family: 'Ubuntu', sans-serif;
-      }
-      .header {
-        background-color: #4B2E83;
-        padding: 10px;
-        color: white;
-        font-size: 24px;
-        font-weight: bold;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      .container {
-        max-width: 500px;
-        margin-top: 125px;
-      }
-      .profile-pic {
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        margin-bottom: 20px;
-      }
-      .stars {
-        font-size: 2rem;
-        color: #C0C0C0;
-        margin: 20px 0;
-      }
-      .stars .fa-star {
-        cursor: pointer;
-        transition: color 0.2s ease-in-out;
-      }
-      .stars .fa-star:hover,
-      .stars .fa-star.hovered {
-        color: #4B2E83; /* Purple on hover */
-      }
-      .stars .fa-star.selected {
-        color: #4B2E83; /* Purple when selected */
-      }
-      .review-section textarea {
-        width: 100%;
-        min-height: 100px;
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-      }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
@@ -102,48 +50,6 @@
       </div>
     </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const stars = document.querySelectorAll('.fa-star');
-        let selectedRating = 0;
-
-        // hover effect
-        stars.forEach(star => {
-          star.addEventListener('mouseover', () => {
-            resetStars();
-            highlightStars(star.getAttribute('data-value'));
-          });
-
-          star.addEventListener('mouseleave', () => {
-            resetStars();
-            if (selectedRating) {
-              highlightStars(selectedRating);
-            }
-          });
-
-          // click to select rating
-          star.addEventListener('click', () => {
-            selectedRating = star.getAttribute('data-value');
-            highlightStars(selectedRating);
-          });
-        });
-
-        // highlight stars up to a certain number
-        function highlightStars(rating) {
-          stars.forEach(star => {
-            if (star.getAttribute('data-value') <= rating) {
-              star.classList.add('selected');
-            }
-          });
-        }
-
-        // reset stars (remove selected and hovered class)
-        function resetStars() {
-          stars.forEach(star => {
-            star.classList.remove('selected');
-          });
-        }
-      });
-    </script>
+    <script src="Feedback.js"></script>
   </body>
 </html>
