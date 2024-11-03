@@ -2,10 +2,6 @@ import React from 'react';
 
 export function LoginPage({ onGoogleSignIn }) {
 
-  const handleSignupClick = () => {
-    navigate('/signup'); 
-  };
-
   return (
     <div>
       {/* Header */}
