@@ -1,0 +1,60 @@
+body {
+    background-color: #F5E6C8;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .header {
+    background-color: #4B2E83;
+    padding: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    max-width: 500px;
+    margin-top: 125px;
+  }
+  
+  .profile-pic {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .stars {
+    font-size: 2rem;
+    color: #C0C0C0;
+    margin: 20px 0;
+  }
+  
+  .stars .fa-star {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .stars .fa-star:hover,
+  .stars .fa-star.hovered {
+    color: #4B2E83;
+  }
+  
+  .stars .fa-star.selected {
+    color: #4B2E83;
+  }
+  
+  .review-section textarea {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
