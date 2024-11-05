@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ChatView from './Chatview.js';
 import Sidebar from './Sidebar.js';
+import ChatView from './ChatView.js';
 
 const MessagingApp = () => {
   const [selectedChat, setSelectedChat] = useState(null);
@@ -14,17 +14,13 @@ const MessagingApp = () => {
 
   return (
     <div>
-
       <button id="toggle-sidebar" className="btn btn-primary d-lg-none">Toggle Sidebar</button>
       <div className="messaging-container">
         <Sidebar chats={chats} onSelectChat={handleChatSelect} />
-        <Chatview selectedChat={selectedChat} />
+        <ChatView selectedChat={selectedChat} /> {/* Use ChatView with capital "V" */}
       </div>
     </div>
   );
 };
 
 export default MessagingApp;
-
-
-
