@@ -1,37 +1,82 @@
 import React from 'react';
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { ProfileDetailModal } from './ProfileDetailModal'; 
 
-export function ProfileCard(props) {
-  return (
-    <div className="col">
-      <div className="card shadow-sm">
-        <div className="card-body d-flex">
-          <div className="profile-section me-3">
-            <img 
-              src="https://via.placeholder.com/80" 
-              alt="Profile" 
-              className="profile-pic mb-3" 
-            />
-            <h5 className="card-title mb-1">someone</h5>
-            <p className="school-year text-muted mb-1">Class of 2025</p>
-            <div className="stars">
-              <span>★ ★ ★ ★ ☆</span>
+export function ProfileCard({ user, profile, onShowLoginPrompt }) {
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
+
+    const handleProfileClick = () => {
+        if (!user) {
+            onShowLoginPrompt();
+        } else {
+            setShowModal(true);
+        }
+    };
+
+    const handleMessageClick = () => {
+        if (!user) {
+            onShowLoginPrompt();
+        } else {
+            navigate('/message');
+        }
+    };
+
+    return (
+        <div>
+            <div className="col">
+                <div className="card shadow-sm">
+                    <div className="card-body d-flex">
+                        <div className="profile-section me-3">
+                            <img 
+                                src={profile.profilePhoto || "https://via.placeholder.com/80"} 
+                                alt="Profile" 
+                                className="profile-pic mb-3" 
+                            />
+                            <h5 className="card-title mb-1">{profile.firstName} {profile.lastName}</h5>
+                            <p className="school-year text-muted mb-1">{profile.year}</p>
+                            <div className="stars">
+                                <span>★ ★ ★ ★ ☆</span>
+                            </div>
+                            <div className="row mt-2">
+                                <Button variant="outline-secondary" onClick={handleProfileClick} className="mt-1">Profile</Button>
+                                <Button variant="outline-secondary" onClick={handleMessageClick} className="mt-2">Message</Button>
+                            </div>
+                        </div>
+
+                        <div className="profile-schedule-section">
+                            <h4 className="schedule-title">Schedule</h4>
+                            <table className="table table-borderless text-center">
+                                <thead>
+                                    <tr className="fw-bold">
+                                        <th>Go to School</th>
+                                        <th>Day</th>
+                                        <th>Back Home</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((day) => (
+                                        <tr key={day}>
+                                            <td className="schedule-time">{profile.schedule[day]?.goToSchool || 'N/A'}</td>
+                                            <td className="schedule-day fw-bold">{day}</td>
+                                            <td className="schedule-time">{profile.schedule[day]?.backHome || 'N/A'}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <p className="mt-1"><strong>Living Region:</strong> {profile.region || 'N/A'}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="schedule-section">
-            <h6 className="schedule-title fw-bolder text-decoration-underline">Schedule</h6>
-            <ul className="list-unstyled mb-1">
-              {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((day) => {
-                return(
-                  <li className="d-flex justify-content-between" key={day}>
-                    <strong>{day}:</strong> <span>some time</span>
-                  </li>
-                )})}
-            </ul>
-            <p><strong>Living Region:</strong> Downtown Seattle</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
+            <ProfileDetailModal 
+                show={showModal} 
+                onHide={() => setShowModal(false)} 
+                profile={profile} 
+            />
+        </div>
+    );
+}
