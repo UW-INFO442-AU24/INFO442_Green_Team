@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button, Table } from 'react-bootstrap';
 import { ref, get, set } from "firebase/database";
 import { CreateProfileModal } from './CreateProfileModal';
@@ -45,6 +45,11 @@ function Profile({ user, database, onLogout }) {
                             Go to Login
                         </Button>
                     </div>
+                    <div className="row mt-3">
+                        <Link to="/" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                            Continue browsing main page
+                        </Link>
+                    </div>
                 </div>
             </div>
         );
@@ -72,6 +77,9 @@ function Profile({ user, database, onLogout }) {
                     </div>
                     <div className="mb-3">
                         <p><strong>Region:</strong> {profile.region}</p>
+                    </div>
+                    <div className="mb-3">
+                        <p><strong>Driver Status:</strong> {profile.isDriver ? "Driver" : "Passenger"}</p>
                     </div>
                     {profile.isDriver && (
                         <div className="mb-3">
