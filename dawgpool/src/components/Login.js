@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export function LoginPage({ onGoogleSignIn }) {
 
@@ -35,6 +36,11 @@ export function LoginPage({ onGoogleSignIn }) {
           <button className="btn btn-primary" onClick={onGoogleSignIn}>
             Login with UW Email
           </button>
+          <div className="mt-3">
+            <Link to="/" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+              Continue browsing main page
+            </Link>
+          </div>
         </div>
       </div>
     </div>

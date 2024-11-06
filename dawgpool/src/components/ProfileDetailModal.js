@@ -4,6 +4,8 @@ import { Modal, Button, Table } from 'react-bootstrap';
 export function ProfileDetailModal({ show, onHide, profile }) {
     if (!profile) return null;
 
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
     return (
         <Modal show={show} onHide={onHide} centered>
             <Modal.Header closeButton>
@@ -26,11 +28,11 @@ export function ProfileDetailModal({ show, onHide, profile }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.entries(profile.schedule).map(([day, times]) => (
+                        {daysOfWeek.map((day) => (
                             <tr key={day}>
                                 <td><strong>{day}</strong></td>
-                                <td>{times.goToSchool || 'N/A'}</td>
-                                <td>{times.backHome || 'N/A'}</td>
+                                <td>{profile.schedule[day]?.goToSchool || 'N/A'}</td>
+                                <td>{profile.schedule[day]?.backHome || 'N/A'}</td>
                             </tr>
                         ))}
                     </tbody>
