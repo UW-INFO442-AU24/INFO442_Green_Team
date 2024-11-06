@@ -47,6 +47,15 @@ function App(props) {
       });
   };
 
+  const handleLogout = () => {
+    signOut(auth)
+        .then(() => {
+            setUser(null);
+            navigate('/login');
+        })
+        .catch(error => console.error("Error during sign-out:", error));
+};
+
   const isLoginPage = location.pathname === "/login";
 
   return (
@@ -56,7 +65,7 @@ function App(props) {
     <Routes>
         <Route path="/" element={<MainPage user={user} database={database}/>} />
         <Route path="/login" element={<LoginPage onGoogleSignIn={handleGoogleSignIn} />} />
-        <Route path="/profile" element={<Profile user={user} database={database}/>} />
+        <Route path="/profile" element={<Profile user={user} database={database} onLogout={handleLogout}/>} />
         <Route path="/message" element={<MessagingApp />} />
         <Route path="/registration" element={<RegisterPage />} />
     </Routes>

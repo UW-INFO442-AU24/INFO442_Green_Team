@@ -59,7 +59,7 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
     return (
         <Modal show={show} onHide={onHide} centered dialogClassName="wide-modal">
             <Modal.Header closeButton>
-                <Modal.Title>Create Profile</Modal.Title>
+                <Modal.Title>Edit Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
