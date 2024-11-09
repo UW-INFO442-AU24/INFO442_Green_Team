@@ -20,7 +20,16 @@ function MainPage({ user, database }) {
         });
     }, [database]);
 
-    // Function to convert time string (e.g., "09:00" or "9:00 AM") to minutes for easier comparison
+    const handleCloseLoginPrompt = () => {
+        setShowLoginPrompt(false);
+    };
+
+    const onShowLoginPrompt = () => {
+        setShowLoginPrompt(true);
+    };
+
+
+    // Function to convert time string
     const timeStringToMinutes = (timeString) => {
         const [time, modifier] = timeString.split(" ");
         let [hours, minutes] = time.split(":").map(Number);
@@ -38,7 +47,7 @@ function MainPage({ user, database }) {
     // Check if availability slots overlap
     const hasOverlap = (userSchedule, profileSchedule) => {
         return userSchedule.some(slot => {
-            const daySchedule = profileSchedule[slot.day]; 
+            const daySchedule = profileSchedule[slot.day]; // Get the schedule for the specific day
             if (!daySchedule || !daySchedule.goToSchool || !daySchedule.backHome) {
                 return false;
             }
@@ -57,7 +66,7 @@ function MainPage({ user, database }) {
             console.log(`Profile: ${profileStart} - ${profileEnd}`);
             
             // Check for overlap
-            return userStart < profileEnd && userEnd > profileStart;
+            return userStart >= profileStart && userEnd <= profileEnd;
         });
     };
 
@@ -87,20 +96,8 @@ function MainPage({ user, database }) {
 
     const handleAvailabilityChange = (index, field, value) => {
         const newAvailability = [...availability];
-        newAvailability[index][field] = value; 
+        newAvailability[index][field] = value; // Directly store the value in 24-hour format
         setAvailability(newAvailability);
-    const handleCloseLoginPrompt = () => {
-        setShowLoginPrompt(false);
-    };
-
-    const onShowLoginPrompt = () => {
-        setShowLoginPrompt(true);
-    };
-
-    const handleSearch = (event) => {
-      event.preventDefault();
-      const searchValue = event.target.search.value;
-      console.log("Search for:", searchValue);
     };
 
     return (
@@ -170,11 +167,7 @@ function MainPage({ user, database }) {
                 <h2>All Profiles</h2>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {profiles.map((profile, index) => (
-                        <ProfileCard 
-                            user={user} 
-                            key={index} 
-                            profile={profile} 
-                            onShowLoginPrompt={onShowLoginPrompt}/>
+                        <ProfileCard user={user} key={index} profile={profile} />
                     ))}
                 </div>
             </div>
