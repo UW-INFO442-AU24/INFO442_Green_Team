@@ -37,6 +37,9 @@ export function ProfileCard({ user, profile, onShowLoginPrompt }) {
                             />
                             <h5 className="card-title mb-1">{profile.firstName} {profile.lastName}</h5>
                             <p className="school-year text-muted mb-1">{profile.year}</p>
+                            <p className="driver-status text-muted text-nowrap"><strong>
+                                {profile.isDriver ? "Driver" : "Passenger"}
+                            </strong></p>
                             <div className="stars">
                                 <span>★ ★ ★ ★ ☆</span>
                             </div>

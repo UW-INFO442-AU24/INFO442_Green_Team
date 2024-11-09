@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button, Table, Row, Col } from 'react-bootstrap';
+import { useNavigate, Link } from 'react-router-dom';
+import { Button, Table } from 'react-bootstrap';
 import { ref, get, set } from "firebase/database";
 import { CreateProfileModal } from './CreateProfileModal';
 
-function Profile({ user, database }) {
+function Profile({ user, database, onLogout }) {
     const navigate = useNavigate();
     const [profile, setProfile] = useState(null);
     const [showCreateProfileModal, setShowCreateProfileModal] = useState(false);
@@ -42,13 +42,20 @@ function Profile({ user, database }) {
                     </div>
                     <div className="row mt-3">
                         <Button onClick={() => navigate('/login')} className="btn btn-primary">
-                            Login with your UW Email
+                            Go to Login
                         </Button>
+                    </div>
+                    <div className="row mt-3">
+                        <Link to="/" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                            Continue browsing main page
+                        </Link>
                     </div>
                 </div>
             </div>
         );
     }
+
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
     return (
         <div className="content-wrapper p-4">
@@ -71,6 +78,9 @@ function Profile({ user, database }) {
                     <div className="mb-3">
                         <p><strong>Region:</strong> {profile.region}</p>
                     </div>
+                    <div className="mb-3">
+                        <p><strong>Driver Status:</strong> {profile.isDriver ? "Driver" : "Passenger"}</p>
+                    </div>
                     {profile.isDriver && (
                         <div className="mb-3">
                             <p><strong>Driver's License:</strong> {profile.driverLicense}</p>
@@ -87,11 +97,11 @@ function Profile({ user, database }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.entries(profile.schedule).map(([day, times]) => (
+                            {daysOfWeek.map((day) => (
                                 <tr key={day}>
                                     <td><strong>{day}</strong></td>
-                                    <td>{times.goToSchool || 'N/A'}</td>
-                                    <td>{times.backHome || 'N/A'}</td>
+                                    <td>{profile.schedule[day]?.goToSchool || 'N/A'}</td>
+                                    <td>{profile.schedule[day]?.backHome || 'N/A'}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -99,7 +109,7 @@ function Profile({ user, database }) {
 
                     <div className="mt-4 d-flex">
                         <Button variant="primary" onClick={() => setShowCreateProfileModal(true)}>Edit Profile</Button>
-                        <Button variant="danger" onClick={() => navigate('/login')} className="ms-2">Log Out</Button>
+                        <Button variant="danger" onClick={onLogout} className="ms-2">Log Out</Button>
                     </div>
                 </div>
             ) : (

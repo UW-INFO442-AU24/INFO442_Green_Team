@@ -89,6 +89,18 @@ function MainPage({ user, database }) {
         const newAvailability = [...availability];
         newAvailability[index][field] = value; 
         setAvailability(newAvailability);
+    const handleCloseLoginPrompt = () => {
+        setShowLoginPrompt(false);
+    };
+
+    const onShowLoginPrompt = () => {
+        setShowLoginPrompt(true);
+    };
+
+    const handleSearch = (event) => {
+      event.preventDefault();
+      const searchValue = event.target.search.value;
+      console.log("Search for:", searchValue);
     };
 
     return (
@@ -158,7 +170,11 @@ function MainPage({ user, database }) {
                 <h2>All Profiles</h2>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {profiles.map((profile, index) => (
-                        <ProfileCard user={user} key={index} profile={profile} />
+                        <ProfileCard 
+                            user={user} 
+                            key={index} 
+                            profile={profile} 
+                            onShowLoginPrompt={onShowLoginPrompt}/>
                     ))}
                 </div>
             </div>

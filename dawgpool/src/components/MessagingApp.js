@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ChatView from './Chatview.js';
 import Sidebar from './Sidebar.js';
+import ChatView from './Chatview.js';
 
 const MessagingApp = () => {
   const [selectedChat, setSelectedChat] = useState(null);
@@ -24,4 +24,3 @@ const MessagingApp = () => {
 };
 
 export default MessagingApp;
-

@@ -59,7 +59,7 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
     return (
         <Modal show={show} onHide={onHide} centered dialogClassName="wide-modal">
             <Modal.Header closeButton>
-                <Modal.Title>Create Profile</Modal.Title>
+                <Modal.Title>Edit Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -90,19 +90,30 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
                         </Col>
                     </Row>
 
-                    <Form.Group controlId="hobbies" className="mt-3">
-                        <Form.Label>Hobbies</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="hobbies"
-                            value={formData.hobbies}
-                            onChange={handleChange}
-                            placeholder="Hobbies"
+                    <Form.Group controlId="isDriver" className="mt-3">
+                        <Form.Check
+                            type="checkbox"
+                            label="Are you a driver?"
+                            checked={formData.isDriver}
+                            onChange={handleDriverCheckbox}
                         />
                     </Form.Group>
+                    
+                    {formData.isDriver && (
+                        <Form.Group controlId="driverLicense" className="mt-3">
+                            <Form.Label>Driver's License Number</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="driverLicense"
+                                value={formData.driverLicense}
+                                onChange={handleChange}
+                                placeholder="Driver's License Number"
+                            />
+                        </Form.Group>
+                    )}
 
                     <Form.Group controlId="year" className="mt-3">
-                        <Form.Label>Year</Form.Label>
+                        <Form.Label>Year (Select)</Form.Label>
                         <Form.Control
                             as="select"
                             name="year"
@@ -163,32 +174,22 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
                         </Row>
                     ))}
 
+                    <Form.Group controlId="hobbies" className="mt-3">
+                        <Form.Label>Hobbies</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="hobbies"
+                            value={formData.hobbies}
+                            onChange={handleChange}
+                            placeholder="Hobbies"
+                        />
+                    </Form.Group>
+
                     <Form.Group controlId="profilePhoto" className="mt-4">
                         <Form.Label>Profile Photo</Form.Label>
                         <Form.Control type="file" onChange={handleFileChange} />
                     </Form.Group>
 
-                    <Form.Group controlId="isDriver" className="mt-3">
-                        <Form.Check
-                            type="checkbox"
-                            label="Are you a driver?"
-                            checked={formData.isDriver}
-                            onChange={handleDriverCheckbox}
-                        />
-                    </Form.Group>
-
-                    {formData.isDriver && (
-                        <Form.Group controlId="driverLicense" className="mt-3">
-                            <Form.Label>Driver's License Number</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="driverLicense"
-                                value={formData.driverLicense}
-                                onChange={handleChange}
-                                placeholder="Driver's License Number"
-                            />
-                        </Form.Group>
-                    )}
                 </Form>
             </Modal.Body>
             <Modal.Footer>

@@ -567,6 +567,10 @@ footer {
     flex: 1;
     overflow-y: auto;
 }
+.messaging-container {
+    display: flex;
+    height: calc(100vh - 80px);
+}
 /* Message Input Area */
 .message-input {
     display: flex;
