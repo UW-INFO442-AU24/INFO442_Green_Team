@@ -20,10 +20,6 @@ function MainPage({ user, database }) {
         });
     }, [database]);
 
-    const handleCloseLoginPrompt = () => {
-        setShowLoginPrompt(false);
-    };
-
     const onShowLoginPrompt = () => {
         setShowLoginPrompt(true);
     };

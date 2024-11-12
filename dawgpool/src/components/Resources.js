@@ -4,8 +4,7 @@ function Resources() {
   return (
     <div className="resources-page">
       <h1 className="resources-header">Carpooling Resources</h1>
-
-      <div className="resources-container">
+      <div className="resources-container container-fluid">
         <section className="resources-section">
           <h2>Introduction to Carpooling</h2>
           <p>Carpooling is a method of transportation where at least two individuals
@@ -69,18 +68,18 @@ function Resources() {
 
 
         <div
-        class="resources-list-section"
+        className="resources-list-section"
         aria-labelledby="resources-heading"
       >
-        <h2 class="resources-list-title">
+        <h2 className="resources-list-title">
           Resources
         </h2>
-        <div class="resources-cards-container">
+        <div className="resources-cards-container">
           <div
-            class="resources-card"
+            className="resources-card"
             aria-labelledby="resources-heading"
           >
-            <div class="resources-card-content">
+            <div className="resources-card-content">
               <h3>
                 UW Parking
               </h3>
@@ -91,7 +90,7 @@ function Resources() {
             </div>
             <a
               href="https://transportation.uw.edu/getting-here/rideshare/carpool#:~:text=Space%20availability%20in%20lots%20is,basis%20and%20is%20not%20guaranteed.&text=A%20coupon%20code%20provided%20for,of%202%20or%20more%20people."
-              class="btn-details"
+              className="btn-details"
               target="_blank"
               aria-label="UW Carpool Parking Information"
             >
@@ -100,10 +99,10 @@ function Resources() {
           </div>
 
           <div
-            class="resources-card"
+            className="resources-card"
             aria-labelledby="resources-wsdot-heading"
           >
-            <div class="resources-card-content">
+            <div className="resources-card-content">
               <h3>
                HOV Information
               </h3>
@@ -114,7 +113,7 @@ function Resources() {
             </div>
             <a
               href="https://wsdot.wa.gov/travel/roads-bridges/hov-lanes#:~:text=HOV%20lanes%20are%20identified%20by,HOV%20rules%20are%20in%20force."
-              class="btn-details"
+              className="btn-details"
               target="_blank"
               aria-label="HOV WA Details"
             >
@@ -123,10 +122,10 @@ function Resources() {
           </div>
 
           <div
-            class="resources-card"
+            className="resources-card"
             aria-labelledby="resources-emergency-heading"
           >
-            <div class="resources-card-content">
+            <div className="resources-card-content">
               <h3>King County Emergency Resources </h3>
               <p>
                 In order to ensure a safe experience while carpooling,
@@ -137,7 +136,7 @@ function Resources() {
             </div>
             <a
               href="https://kingcounty.gov/en/dept/sheriff"
-              class="btn-details"
+              className="btn-details"
               target="_blank"
               aria-label="King County Emergency Hotline"
             >
