@@ -20,9 +20,10 @@ export function ProfileCard({ user, profile, onShowLoginPrompt }) {
         if (!user) {
             onShowLoginPrompt();
         } else {
-            navigate('/message');
+            navigate('/message', { state: { profile } });
         }
     };
+    
 
     return (
         <div>

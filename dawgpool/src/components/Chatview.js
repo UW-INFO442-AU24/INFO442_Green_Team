@@ -1,4 +1,3 @@
-// src/components/ChatView.js
 import React, { useState } from 'react';
 
 const Chatview = ({ selectedChat }) => {
@@ -18,14 +17,14 @@ const Chatview = ({ selectedChat }) => {
         <>
           {/* Chat Header */}
           <div className="chat-header">
-            <img src={selectedChat.img} alt="Selected Profile" id="chat-profile-img" />
+            <img src={selectedChat.img || 'https://via.placeholder.com/80'} alt="Selected Profile" id="chat-profile-img" />
             <div className="profile-info">
-              <h2 id="chat-profile-name">{selectedChat.name}</h2>
-              <span id="chat-profile-year">Year: Senior</span>
+              <h2 id="chat-profile-name">{selectedChat.name || `${selectedChat.firstName} ${selectedChat.lastName}`}</h2>
+              <span id="chat-profile-year">Year: {selectedChat.year || 'N/A'}</span>
               <a href="#" className="schedule-link">Click for Schedule</a>
             </div>
           </div>
-          
+
           {/* Messages Container */}
           <div className="messages" id="messages">
             {messages.map((msg, index) => (
@@ -34,7 +33,7 @@ const Chatview = ({ selectedChat }) => {
               </div>
             ))}
           </div>
-          
+
           {/* Message Input Box */}
           <div className="message-input-box message-input bg-light p-3 d-flex" style={{ position: 'relative' }}>
             <input
@@ -60,4 +59,6 @@ const Chatview = ({ selectedChat }) => {
 };
 
 export default Chatview;
+
+
 
