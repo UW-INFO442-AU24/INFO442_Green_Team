@@ -6,6 +6,7 @@ import MainPage from './MainPage.js';
 import { Navbar } from './NavBar.js';
 import Profile from './Profile.js'
 import MessagingApp from './MessagingApp.js';
+import Resources from './Resources.js';
 import { RegisterPage } from './Registration.js';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
@@ -68,6 +69,7 @@ function App(props) {
         <Route path="/profile" element={<Profile user={user} database={database} onLogout={handleLogout}/>} />
         <Route path="/message" element={<MessagingApp />} />
         <Route path="/registration" element={<RegisterPage />} />
+        <Route path="/resources" element={<Resources />} />
     </Routes>
 
     <footer className="footer">
