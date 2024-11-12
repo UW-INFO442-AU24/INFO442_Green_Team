@@ -167,7 +167,7 @@ function MainPage({ user, database }) {
                 <h2>All Profiles</h2>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {profiles.map((profile, index) => (
-                        <ProfileCard user={user} key={index} profile={profile} />
+                        <ProfileCard user={user} key={index} profile={profile}  onShowLoginPrompt={onShowLoginPrompt}/>
                     ))}
                 </div>
             </div>

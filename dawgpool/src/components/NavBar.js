@@ -17,6 +17,9 @@ export function Navbar(props) {
               <li className="mx-2">
                     <strong><a href="/profile" aria-label="Profile">Profile</a></strong>
               </li>
+              <li className="mx-2">
+                    <strong><a href="/resources" aria-label="Profile">Resources</a></strong>
+              </li>
           </ul>
       </nav>
     );
