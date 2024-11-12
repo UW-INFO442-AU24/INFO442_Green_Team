@@ -763,6 +763,21 @@ footer {
     .chat-view {
         flex: 1;
     }
+
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .profile-schedule-section {
+        display: none;
+    }
+    
 }
 
 @media (max-width: 768px) {
@@ -806,6 +821,10 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .heading-logo{
+        display: none;
+    }
+
     .login-logo {
         font-size: 1.5rem;
     }

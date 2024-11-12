@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar.js';
-import ChatView from './Chatview.js';
+import ChatView from './ChatView.js';
 
 const MessagingApp = () => {
   const location = useLocation();

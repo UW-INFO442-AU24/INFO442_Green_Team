@@ -20,10 +20,6 @@ function MainPage({ user, database }) {
         });
     }, [database]);
 
-    const handleCloseLoginPrompt = () => {
-        setShowLoginPrompt(false);
-    };
-
     const onShowLoginPrompt = () => {
         setShowLoginPrompt(true);
     };
@@ -104,8 +100,8 @@ function MainPage({ user, database }) {
         <div className="content-wrapper">
             <div className="container-fluid">
                 <header className="text-center mb-4 d-flex justify-content-center align-items-center">
-                    <img src="assets/dawgprint.png" alt="dawgprint" className="heading-logo me-2" />
-                    <h1><strong>Find your Carpool Dawg!</strong></h1>
+                    <img src="assets/dawgprint.png" alt="dawgprint" className="heading-logo me-2 mb-3" />
+                    <h1 className="mb-3"><strong>Find your Carpool Dawg!</strong></h1>
                 </header>
 
                 {/* Availability Form */}
