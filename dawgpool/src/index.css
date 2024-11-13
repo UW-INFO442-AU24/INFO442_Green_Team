@@ -87,7 +87,11 @@ body {
 /* need to do responsive changes for diaplaying the text */
 
 /* Navbar */
-nav {
+
+.mobile-navbar {
+    display: none;
+}
+.desktop-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -853,4 +857,40 @@ footer {
     .login-btn {
         padding: 0.6rem;
     }
+
+    /* Nav Bar Mobile */
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+    }
+    .bm-menu {
+        background: #4b2e83; 
+        padding: 2rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 200px;
+        transition: transform 0.2s ease-in-out;
+    }
+    .bm-menu-wrap {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
+    .bm-overlay {
+        display: none;
+    }
+    .bm-item {
+        color: white;
+        text-decoration: none;
+    }
+
+
 }
