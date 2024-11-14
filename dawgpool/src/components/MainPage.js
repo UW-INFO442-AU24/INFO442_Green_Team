@@ -62,9 +62,13 @@ function MainPage({ user, database }) {
             console.log(`Comparing times for ${slot.day}:`);
             console.log(`User: ${userStart} - ${userEnd}`);
             console.log(`Profile: ${profileStart} - ${profileEnd}`);
+
+            if (profileStart >= userStart && profileEnd <= userEnd) {
+                console.log("Overlap found!");
+            }
             
             // Check for overlap
-            return userStart >= profileStart && userEnd <= profileEnd;
+            return profileStart >= userStart && profileEnd <= userEnd;
         });
     };
 
