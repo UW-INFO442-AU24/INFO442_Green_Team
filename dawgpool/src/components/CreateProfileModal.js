@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Button, Modal, Form, Row, Col } from 'react-bootstrap';
+import { formatTimeToRegular } from '../utils/timeUtils';
 
 export function CreateProfileModal({ show, onHide, onSave, initialData }) {
     const [formData, setFormData] = useState({
@@ -158,20 +159,20 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
                             <Col>
                                 <Form.Control
                                     type="time"
-                                    placeholder="Go to School"
                                     value={formData.schedule[day].goToSchool}
                                     onChange={(e) => handleScheduleChange(day, 'goToSchool', e.target.value)}
                                 />
+                                <small>{formatTimeToRegular(formData.schedule[day]?.goToSchool)}</small> {/* Preview */}
                             </Col>
                             <Col>
                                 <Form.Control
                                     type="time"
-                                    placeholder="Back Home"
                                     value={formData.schedule[day].backHome}
                                     onChange={(e) => handleScheduleChange(day, 'backHome', e.target.value)}
                                 />
+                                <small>{formatTimeToRegular(formData.schedule[day]?.backHome)}</small> {/* Preview */}
                             </Col>
-                        </Row>
+                        </Row>                    
                     ))}
 
                     <Form.Group controlId="hobbies" className="mt-3">
