@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar.js';
-import ChatView from './Chatview.js';
+import ChatView from './ChatView.js';
 
 const MessagingApp = () => {
   const [selectedChat, setSelectedChat] = useState(null);
