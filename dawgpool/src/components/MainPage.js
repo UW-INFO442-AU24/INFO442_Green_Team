@@ -8,6 +8,7 @@ function MainPage({ user, database }) {
     const [profiles, setProfiles] = useState([]);
     const [availability, setAvailability] = useState([]);
     const [matchedProfiles, setMatchedProfiles] = useState([]);
+    const [searchRegion, setSearchRegion] = useState('');
 
     useEffect(() => {
         // Fetch all profiles from the database
@@ -16,6 +17,7 @@ function MainPage({ user, database }) {
             if (snapshot.exists()) {
                 const profilesData = Object.values(snapshot.val());
                 setProfiles(profilesData);
+                setMatchedProfiles(profilesData);
             }
         });
     }, [database]);
@@ -60,9 +62,13 @@ function MainPage({ user, database }) {
             console.log(`Comparing times for ${slot.day}:`);
             console.log(`User: ${userStart} - ${userEnd}`);
             console.log(`Profile: ${profileStart} - ${profileEnd}`);
+
+            if (profileStart >= userStart && profileEnd <= userEnd) {
+                console.log("Overlap found!");
+            }
             
             // Check for overlap
-            return userStart >= profileStart && userEnd <= profileEnd;
+            return profileStart >= userStart && profileEnd <= userEnd;
         });
     };
 
@@ -96,6 +102,16 @@ function MainPage({ user, database }) {
         setAvailability(newAvailability);
     };
 
+    // Handle search bar input change
+    const handleSearchChage = (e) => {
+        setSearchRegion(e.target.value);
+        // Filter profiles by region
+        const filterdProfiles = profiles.filter(profile =>
+            profile.region.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+        setMatchedProfiles(filterdProfiles);
+    }
+
     return (
         <div className="content-wrapper">
             <div className="container-fluid">
@@ -104,8 +120,21 @@ function MainPage({ user, database }) {
                     <h1 className="mb-3"><strong>Find your Carpool Dawg!</strong></h1>
                 </header>
 
+                {/* Search Bar */}
+                <div className="search-bar mb-4">
+                    <label>
+                        Search by Region:
+                        <input
+                        type="text"
+                        value={searchRegion}
+                        onChange={handleSearchChage}
+                        placeholder="Enter region..."
+                        />
+                    </label>
+                </div>
+
                 {/* Availability Form */}
-                <h2>Set Your Perferred Commute Time</h2>
+                <h2>Set Your Preferred Commute Time</h2>
                 <form onSubmit={handleAvailabilitySubmit}>
                     {availability.map((slot, index) => (
                         <div key={index} className="availability-slot">
@@ -148,7 +177,7 @@ function MainPage({ user, database }) {
                 </form>
 
                 {/* Matched Profiles Display */}
-                <h2>Matched Profiles Based on Perferred Commute Time</h2>
+                <h2>Matched Profiles Based on Preferred Commute Time</h2>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {matchedProfiles.length > 0 ? (
                         matchedProfiles.map((profile, index) => (

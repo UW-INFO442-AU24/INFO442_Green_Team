@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { ProfileDetailModal } from './ProfileDetailModal'; 
+import { formatTimeToRegular } from '../utils/timeUtils';
 
 export function ProfileCard({ user, profile, onShowLoginPrompt }) {
     const [showModal, setShowModal] = useState(false);
@@ -62,14 +63,14 @@ export function ProfileCard({ user, profile, onShowLoginPrompt }) {
                                 <tbody>
                                     {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((day) => (
                                         <tr key={day}>
-                                            <td className="schedule-time">{profile.schedule[day]?.goToSchool || 'N/A'}</td>
+                                            <td className="schedule-time">{formatTimeToRegular(profile.schedule[day]?.goToSchool)}</td>
                                             <td className="schedule-day fw-bold">{day}</td>
-                                            <td className="schedule-time">{profile.schedule[day]?.backHome || 'N/A'}</td>
+                                            <td className="schedule-time">{formatTimeToRegular(profile.schedule[day]?.backHome)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
-                            <p className="mt-1"><strong>Living Region:</strong> {profile.region || 'N/A'}</p>
+                            <p className="mt-1"><strong>Living City:</strong> {profile.region || 'N/A'}</p>
                         </div>
                     </div>
                 </div>
@@ -83,3 +84,4 @@ export function ProfileCard({ user, profile, onShowLoginPrompt }) {
         </div>
     );
 }
+

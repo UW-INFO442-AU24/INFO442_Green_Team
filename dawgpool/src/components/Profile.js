@@ -76,7 +76,7 @@ function Profile({ user, database, onLogout }) {
                         <p><strong>Address:</strong> {profile.address}</p>
                     </div>
                     <div className="mb-3">
-                        <p><strong>Region:</strong> {profile.region}</p>
+                        <p><strong>City:</strong> {profile.region}</p>
                     </div>
                     <div className="mb-3">
                         <p><strong>Driver Status:</strong> {profile.isDriver ? "Driver" : "Passenger"}</p>
