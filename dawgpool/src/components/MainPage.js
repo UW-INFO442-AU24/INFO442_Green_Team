@@ -8,6 +8,7 @@ function MainPage({ user, database }) {
     const [profiles, setProfiles] = useState([]);
     const [availability, setAvailability] = useState([]);
     const [matchedProfiles, setMatchedProfiles] = useState([]);
+    const [searchRegion, setSearchRegion] = useState('');
 
     useEffect(() => {
         // Fetch all profiles from the database
@@ -16,6 +17,7 @@ function MainPage({ user, database }) {
             if (snapshot.exists()) {
                 const profilesData = Object.values(snapshot.val());
                 setProfiles(profilesData);
+                setMatchedProfiles(profilesData);
             }
         });
     }, [database]);
@@ -96,6 +98,16 @@ function MainPage({ user, database }) {
         setAvailability(newAvailability);
     };
 
+    // Handle search bar input change
+    const handleSearchChage = (e) => {
+        setSearchRegion(e.target.value);
+        // Filter profiles by region
+        const filterdProfiles = profiles.filter(profile =>
+            profile.region.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+        setMatchedProfiles(filterdProfiles);
+    }
+
     return (
         <div className="content-wrapper">
             <div className="container-fluid">
@@ -103,6 +115,19 @@ function MainPage({ user, database }) {
                     <img src="assets/dawgprint.png" alt="dawgprint" className="heading-logo me-2 mb-3" />
                     <h1 className="mb-3"><strong>Find your Carpool Dawg!</strong></h1>
                 </header>
+
+                {/* Search Bar */}
+                <div className="search-bar mb-4">
+                    <label>
+                        Search by Region:
+                        <input
+                        type="text"
+                        value={searchRegion}
+                        onChange={handleSearchChage}
+                        placeholder="Enter region..."
+                        />
+                    </label>
+                </div>
 
                 {/* Availability Form */}
                 <h2>Set Your Perferred Commute Time</h2>
