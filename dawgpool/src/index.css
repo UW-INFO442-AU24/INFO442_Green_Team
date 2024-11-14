@@ -840,6 +840,7 @@ footer {
     .login-nav-links {
         font-size: 0.8rem;
         gap: 8px;
+        display: none;
     }
 
     .login-image {
@@ -847,7 +848,7 @@ footer {
     }
 
     .login-image-overlay {
-        font-size: 1.2rem;
+        display:none;
     }
 
     .login-form-section {
