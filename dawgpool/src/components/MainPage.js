@@ -62,9 +62,13 @@ function MainPage({ user, database }) {
             console.log(`Comparing times for ${slot.day}:`);
             console.log(`User: ${userStart} - ${userEnd}`);
             console.log(`Profile: ${profileStart} - ${profileEnd}`);
+
+            if (profileStart >= userStart && profileEnd <= userEnd) {
+                console.log("Overlap found!");
+            }
             
             // Check for overlap
-            return userStart >= profileStart && userEnd <= profileEnd;
+            return profileStart >= userStart && profileEnd <= userEnd;
         });
     };
 
@@ -130,7 +134,7 @@ function MainPage({ user, database }) {
                 </div>
 
                 {/* Availability Form */}
-                <h2>Set Your Perferred Commute Time</h2>
+                <h2>Set Your Preferred Commute Time</h2>
                 <form onSubmit={handleAvailabilitySubmit}>
                     {availability.map((slot, index) => (
                         <div key={index} className="availability-slot">
@@ -173,7 +177,7 @@ function MainPage({ user, database }) {
                 </form>
 
                 {/* Matched Profiles Display */}
-                <h2>Matched Profiles Based on Perferred Commute Time</h2>
+                <h2>Matched Profiles Based on Preferred Commute Time</h2>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {matchedProfiles.length > 0 ? (
                         matchedProfiles.map((profile, index) => (
