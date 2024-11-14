@@ -1,8 +1,10 @@
 import React from 'react';
+import { slide as Menu } from "react-burger-menu";
 
 export function Navbar(props) {
     return (
-      <nav className="d-flex justify-content-between align-items-center p-3">
+        <div>
+      <nav className="desktop-nav">
           <div className="navbar-left d-flex align-items-center">
               <img src="/assets/uw_logo.png" alt="UW Logo" className="navbar-logo" />
               <h1 className="ms-2">DAWGPOOL</h1>
@@ -22,5 +24,28 @@ export function Navbar(props) {
               </li>
           </ul>
       </nav>
+
+        {/* Mobile Navbar */}
+        <div className="mobile-navbar">
+        <div className="navbar-left d-flex align-items-center p-3">
+            <img src="/assets/uw_logo.png" alt="UW Logo" className="navbar-logo" />
+            <Menu>
+                <a id="main" className="menu-item" href="/">
+                    Home
+                </a>
+                <a id="message" className="menu-item" href="/message">
+                    Message
+                </a>
+                <a id="profile" className="menu-item" href="/profile">
+                    Profile
+                </a>
+                <a id="resources" className="menu-item" href="/resources">
+                    Resources
+                </a>
+            </Menu>
+        </div>
+        </div>
+        </div>
+
     );
 };
