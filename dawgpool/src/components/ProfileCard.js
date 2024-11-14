@@ -70,7 +70,7 @@ export function ProfileCard({ user, profile, onShowLoginPrompt }) {
                                     ))}
                                 </tbody>
                             </table>
-                            <p className="mt-1"><strong>Living Region:</strong> {profile.region || 'N/A'}</p>
+                            <p className="mt-1"><strong>Living City:</strong> {profile.region || 'N/A'}</p>
                         </div>
                     </div>
                 </div>

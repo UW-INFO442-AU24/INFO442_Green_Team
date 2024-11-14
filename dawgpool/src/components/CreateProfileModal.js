@@ -10,7 +10,7 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
         hobbies: '',
         year: 'Freshman',
         address: '',
-        region: '',
+        city: '',
         schedule: {
             Monday: { goToSchool: '', backHome: '' },
             Tuesday: { goToSchool: '', backHome: '' },
@@ -140,7 +140,7 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
                     </Form.Group>
 
                     <Form.Group controlId="region" className="mt-3">
-                        <Form.Label>Region</Form.Label>
+                        <Form.Label>City</Form.Label>
                         <Form.Control
                             type="text"
                             name="region"
