@@ -788,6 +788,9 @@ footer {
     .login-logo {
         font-size: 1.8rem;
     }
+    .heading-logo{
+        display: none;
+    }
 
     .login-logo span {
         font-size: 2.5rem;
@@ -798,7 +801,7 @@ footer {
     }
 
     .login-image-overlay {
-        font-size: 1.5rem;
+        display:none;
     }
 
     .login-title {
@@ -837,6 +840,42 @@ footer {
         margin: 0.5rem 0;
         text-align: center;
       }
+
+    /* Nav Bar Mobile */
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #4b2e83;
+    }
+    .bm-menu {
+        background: #4b2e83; 
+        padding: 2rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 200px;
+        transition: transform 0.2s ease-in-out;
+    }
+    .bm-menu-wrap {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
+    .bm-overlay {
+        display: none;
+    }
+    .bm-item {
+        color: white;
+        text-decoration: none;
+    }
+
       
 }
 
@@ -879,40 +918,6 @@ footer {
         padding: 0.6rem;
     }
 
-    /* Nav Bar Mobile */
-    .desktop-nav {
-        display: none;
-    }
-    .mobile-navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        background-color: #4b2e83;
-    }
-    .bm-menu {
-        background: #4b2e83; 
-        padding: 2rem;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 200px;
-        transition: transform 0.2s ease-in-out;
-    }
-    .bm-menu-wrap {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-    }
-    .bm-overlay {
-        display: none;
-    }
-    .bm-item {
-        color: white;
-        text-decoration: none;
-    }
-
+ 
 
 }
