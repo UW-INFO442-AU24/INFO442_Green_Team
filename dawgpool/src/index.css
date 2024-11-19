@@ -822,6 +822,22 @@ footer {
     .chat-view {
         width: 100%; /* Make chat view take full width */
     }
+    /* Resources Page */
+    .resources-section iframe{
+        width: 250px;
+        height: 200px;
+      }
+      .resources-section img{
+        width: 250px;
+        height: 200px;
+      }
+      .resources-card {
+        flex-direction: column;
+        max-width: 100%; 
+        margin: 0.5rem 0;
+        text-align: center;
+      }
+      
 }
 
 @media (max-width: 480px) {
