@@ -123,12 +123,12 @@ function MainPage({ user, database }) {
                 {/* Search Bar */}
                 <div className="search-bar mb-4">
                     <label>
-                        Search by Region:
+                        Search by city:
                         <input
                         type="text"
                         value={searchRegion}
                         onChange={handleSearchChage}
-                        placeholder="Enter region..."
+                        placeholder="Enter city..."
                         />
                     </label>
                 </div>

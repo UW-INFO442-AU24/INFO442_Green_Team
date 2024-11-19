@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar.js';
-import ChatView from './ChatView.js';
+import Chatview from './Chatview.js';
 
 const MessagingApp = () => {
   const location = useLocation();
@@ -20,7 +20,7 @@ const MessagingApp = () => {
       <button id="toggle-sidebar" className="btn btn-primary d-lg-none">Toggle Sidebar</button>
       <div className="messaging-container">
         <Sidebar chats={chats} onSelectChat={handleChatSelect} />
-        <ChatView selectedChat={selectedChat} />
+        <Chatview selectedChat={selectedChat} />
       </div>
     </div>
   );

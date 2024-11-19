@@ -25,7 +25,7 @@ export function Navbar(props) {
           </ul>
       </nav>
 
-        {/* Mobile Navbar */}
+        {/* Mobile Navbar Screen */}
         <div className="mobile-navbar">
         <div className="navbar-left d-flex align-items-center p-3">
             <img src="/assets/uw_logo.png" alt="UW Logo" className="navbar-logo" />
