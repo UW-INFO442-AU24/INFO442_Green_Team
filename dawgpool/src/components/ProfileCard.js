@@ -8,7 +8,10 @@ import { formatTimeToRegular } from '../utils/timeUtils';
 export function ProfileCard({ user, profile, onShowLoginPrompt }) {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+    const driverImage = "/assets/driverimage.png";
+    const passengerImage = "/assets/passengerimage.png";
 
+    const profileImage = profile.isDriver ? driverImage : passengerImage;
     const handleProfileClick = () => {
         if (!user) {
             onShowLoginPrompt();
@@ -32,7 +35,7 @@ export function ProfileCard({ user, profile, onShowLoginPrompt }) {
                     <div className="card-body d-flex">
                         <div className="profile-section me-3">
                             <img 
-                                src={profile.profilePhoto || "https://via.placeholder.com/80"} 
+                                src={profile.profilePhoto || profileImage} 
                                 alt="Profile" 
                                 className="profile-pic mb-3" 
                             />
