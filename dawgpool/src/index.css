@@ -84,7 +84,6 @@ body {
     font-weight: bold;
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
 }
-/* need to do responsive changes for diaplaying the text */
 
 /* Navbar */
 
@@ -221,6 +220,12 @@ nav ul a:hover::after {
 }
 
 /* Main Page */
+.info-button {
+    margin-top: 50px;
+    border-radius: 50%;
+    padding: 10px 15px;
+}
+
 .content-wrapper {
     flex-grow: 1;
     display: flex;
@@ -262,6 +267,27 @@ nav ul a:hover::after {
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -20px;
+}
+
+.availiability-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.matching-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .profile-section {
@@ -879,7 +905,7 @@ footer {
       
 }
 
-@media (max-width: 480px) {
+@media (max-width: 425px) {
     .heading-logo{
         display: none;
     }
@@ -917,7 +943,5 @@ footer {
     .login-btn {
         padding: 0.6rem;
     }
-
- 
 
 }

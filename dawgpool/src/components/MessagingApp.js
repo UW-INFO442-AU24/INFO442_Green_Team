@@ -1,34 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import Sidebar from "./Sidebar"; // Assume Sidebar displays users and lets you select one
-import Messaging from "./Messaging"; // Import your existing Messaging component
-import ChatView from "./Chatview"; // ChatView shows the chat history
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import Sidebar from './Sidebar.js';
-import Chatview from './Chatview.js';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Sidebar from "./Sidebar";
+import Messaging from "./Messaging";
+import ChatView from "./Chatview";
 
 const MessagingApp = () => {
-  const [selectedUser, setSelectedUser] = useState(null); // Track selected user
-  const [currentUser, setCurrentUser] = useState(null); // Track the current logged-in user
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Fetch the current user and users list from Firebase
     const database = getDatabase();
+    const auth = getAuth();
 
-    // Assume currentUser is fetched somehow, e.g. through Firebase auth
+    // fetch the current authenticated user
     const fetchCurrentUser = async () => {
-      // Example: Fetch user data from Firebase or some auth service
-      setCurrentUser({
-        uid: "22dQzmlUrdV3YsaKCttJJH14LOj1", // Example user ID
-        firstName: "Jam", // Example first name
-        lastName: "Saka",
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setCurrentUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+          });
+        } else {
+          setCurrentUser(null); //  no user is logged in
+        }
       });
     };
 
     fetchCurrentUser();
 
+    // fetch the list of users from the database
     const profilesRef = ref(database, "profiles");
     onValue(profilesRef, (snapshot) => {
       const profiles = snapshot.val();
@@ -37,21 +40,19 @@ const MessagingApp = () => {
           uid,
           ...profiles[uid],
         }));
-        setUsers(userList); // Set users list in state
+        setUsers(userList);
       }
     });
   }, []);
 
   const handleSelectUser = (uid) => {
-    // Select a user to chat with
     setSelectedUser(uid);
   };
 
   return (
     <div className="messaging-app">
       <Sidebar users={users} onSelectUser={handleSelectUser} />
-      
-      {/* ChatView and Messaging components */}
+
       {selectedUser ? (
         <>
           <ChatView selectedUser={selectedUser} currentUser={currentUser} />
