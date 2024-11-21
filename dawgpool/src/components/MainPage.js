@@ -127,10 +127,12 @@ function MainPage({ user, database }) {
                     <h1 className="mb-3"><strong>Find your Carpool Dawg!</strong></h1>
                 </header>
 
+                {/* Availability Form */}
+                <div className="match-filter-section row mb-4">
                 {/* Search Bar */}
-                <div className="search-bar mb-4">
+                <div className="search-bar col">
                     <label>
-                        Search by city:
+                        <h2>Search by city:</h2>
                         <input
                         type="text"
                         value={searchRegion}
@@ -141,59 +143,62 @@ function MainPage({ user, database }) {
                     <Button
                         aria-label="Information Button"
                         variant="btn btn-outline-secondary"
-                        className="ms-4"
+                        className="ms-3 info-button"
                         onClick={handleShowInfoModal}
                     >
                         ℹ️
                     </Button>
+                    </div>
+                    <div className="availiability-sectio col">
+                        <h2 className="my-3">Set Your Preferred Commute Time</h2>
+                        <div>
+                            <form onSubmit={handleAvailabilitySubmit}>
+                                {availability.map((slot, index) => (
+                                    <div key={index} className="availability-slot">
+                                        <label>
+                                            Day:
+                                            <select
+                                                value={slot.day}
+                                                onChange={(e) => handleAvailabilityChange(index, 'day', e.target.value)}
+                                            >
+                                                <option value="">Select Day</option>
+                                                <option value="Monday">Monday</option>
+                                                <option value="Tuesday">Tuesday</option>
+                                                <option value="Wednesday">Wednesday</option>
+                                                <option value="Thursday">Thursday</option>
+                                                <option value="Friday">Friday</option>
+                                                <option value="Saturday">Saturday</option>
+                                                <option value="Sunday">Sunday</option>
+                                            </select>
+                                        </label>
+                                        <label>
+                                            Start Time:
+                                            <input
+                                                type="time"
+                                                value={slot.start}
+                                                onChange={(e) => handleAvailabilityChange(index, 'start', e.target.value)}
+                                            />
+                                        </label>
+                                        <label>
+                                            End Time:
+                                            <input
+                                                type="time"
+                                                value={slot.end}
+                                                onChange={(e) => handleAvailabilityChange(index, 'end', e.target.value)}
+                                            />
+                                        </label>
+                                    </div>
+                                ))}
+                                <Button onClick={handleAddAvailability} className="mt-2">Add Time Slot</Button>
+                                <Button type="submit" className="mt-2 ms-2">Find Matches</Button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Availability Form */}
-                <h2>Set Your Preferred Commute Time</h2>
-                <form onSubmit={handleAvailabilitySubmit}>
-                    {availability.map((slot, index) => (
-                        <div key={index} className="availability-slot">
-                            <label>
-                                Day:
-                                <select
-                                    value={slot.day}
-                                    onChange={(e) => handleAvailabilityChange(index, 'day', e.target.value)}
-                                >
-                                    <option value="">Select Day</option>
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
-                                </select>
-                            </label>
-                            <label>
-                                Start Time:
-                                <input
-                                    type="time"
-                                    value={slot.start}
-                                    onChange={(e) => handleAvailabilityChange(index, 'start', e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                End Time:
-                                <input
-                                    type="time"
-                                    value={slot.end}
-                                    onChange={(e) => handleAvailabilityChange(index, 'end', e.target.value)}
-                                />
-                            </label>
-                        </div>
-                    ))}
-                    <Button onClick={handleAddAvailability} className="mt-2">Add Time Slot</Button>
-                    <Button type="submit" className="mt-2 ms-2">Find Matches</Button>
-                </form>
-
                 {/* Matched Profiles Display */}
-                <div>
-                    <h2 className="mt-4 mb-3">Matched Profiles Based on Preferred Commute Time</h2>
+                <div className="matching-section">
+                    <h2 className="my-4">Matched Profiles Based on Preferred Commute Time</h2>
                     {!isFilterApplied ? (
                         <p className="text-muted mb-5">You haven't selected your matched information yet.</p>
                     ) : matchedProfiles.length > 0 ? (
