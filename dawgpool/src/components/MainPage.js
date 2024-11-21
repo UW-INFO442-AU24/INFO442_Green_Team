@@ -99,12 +99,19 @@ function MainPage({ user, database }) {
 
     // Handle adding a new time slot to availability
     const handleAddAvailability = () => {
-        setAvailability([...availability, { day: '', start: '', end: '' }]);
+        setAvailability([...availability, { day: '', startHour: '', startMinute: '', startPeriod: 'AM', endHour: '', endMinute: '', endPeriod: 'AM' }]);
     };
 
     const handleAvailabilityChange = (index, field, value) => {
         const newAvailability = [...availability];
-        newAvailability[index][field] = value; // Directly store the value in 24-hour format
+        newAvailability[index][field] = value;
+
+        if (['startHour', 'startMinute', 'startPeriod', 'endHour', 'endMinute', 'endPeriod'].includes(field)) {
+            const slot = newAvailability[index];
+            slot.start = `${slot.startHour}:${slot.startMinute} ${slot.startPeriod}`;
+            slot.end = `${slot.endHour}:${slot.endMinute} ${slot.endPeriod}`;
+        }
+
         setAvailability(newAvailability);
     };
 
@@ -149,7 +156,7 @@ function MainPage({ user, database }) {
                         ℹ️
                     </Button>
                     </div>
-                    <div className="availiability-sectio col">
+                    <div className="availiability-section col">
                         <h2 className="my-3">Set Your Preferred Commute Time</h2>
                         <div>
                             <form onSubmit={handleAvailabilitySubmit}>
@@ -173,19 +180,59 @@ function MainPage({ user, database }) {
                                         </label>
                                         <label>
                                             Start Time:
-                                            <input
-                                                type="time"
-                                                value={slot.start}
-                                                onChange={(e) => handleAvailabilityChange(index, 'start', e.target.value)}
-                                            />
+                                            <div>
+                                                <select
+                                                    value={slot.startHour || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'startHour', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 12 }, (_, i) => (
+                                                        <option key={i} value={i + 1}>{i + 1}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.startMinute || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'startMinute', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 60 }, (_, i) => (
+                                                        <option key={i} value={i.toString().padStart(2, '0')}>{i.toString().padStart(2, '0')}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.startPeriod || 'AM'}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'startPeriod', e.target.value)}
+                                                >
+                                                    <option value="AM">AM</option>
+                                                    <option value="PM">PM</option>
+                                                </select>
+                                            </div>
                                         </label>
                                         <label>
                                             End Time:
-                                            <input
-                                                type="time"
-                                                value={slot.end}
-                                                onChange={(e) => handleAvailabilityChange(index, 'end', e.target.value)}
-                                            />
+                                            <div>
+                                                <select
+                                                    value={slot.endHour || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'endHour', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 12 }, (_, i) => (
+                                                        <option key={i} value={i + 1}>{i + 1}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.endMinute || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'endMinute', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 60 }, (_, i) => (
+                                                        <option key={i} value={i.toString().padStart(2, '0')}>{i.toString().padStart(2, '0')}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.endPeriod || 'AM'}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'endPeriod', e.target.value)}
+                                                >
+                                                    <option value="AM">AM</option>
+                                                    <option value="PM">PM</option>
+                                                </select>
+                                            </div>
                                         </label>
                                     </div>
                                 ))}

@@ -290,6 +290,11 @@ nav ul a:hover::after {
     flex-direction: column;
 }
 
+.availability-slot {
+    display: flex;
+    flex-direction: row;
+}
+
 .profile-section {
     max-width: 30%;
 }
@@ -754,6 +759,11 @@ footer {
     background-color: #666;
   }
 
+.modal-dialog {
+    width: 80%;
+    max-width:1200px;
+}
+
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -942,6 +952,14 @@ footer {
 
     .login-btn {
         padding: 0.6rem;
+    }
+
+    .info-button {
+        margin-top: 70px;
+    }
+
+    .availiability-section {
+        margin-top: 20px;
     }
 
 }
