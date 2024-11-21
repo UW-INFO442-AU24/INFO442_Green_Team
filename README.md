@@ -16,8 +16,12 @@ Our project focuses on the **United Nations Sustainable Development Goal 11 (SDG
 * Messaging functionality for users to coordinate with each other
 * Profile registration
 * User set up information page (Where user lives/starting area, course schedule)
-* Profile records that show how reliable the person is
-* User feedback and ratings for providing feedback to each other
+
+## Test Protocol
+[DAWGPOOL - Test Protocol](https://docs.google.com/document/d/1ef0123rIvZqWbsX1bZvfBQcCGYpn6cyOSQaJMGNBmu0/edit?usp=sharing)
+
+## User Persona
+[DAWGPOOL - User Persona](https://www.figma.com/design/mB8c3aOJaijj4SWSfetSkh/442%3A-User-Persona?node-id=0-1)
 
 ## Tech Stack
 * Bootstrap/CSS
@@ -25,5 +29,3 @@ Our project focuses on the **United Nations Sustainable Development Goal 11 (SDG
 * React
 * Firebase real-time database 
 * Firebase authentication 
-
-
