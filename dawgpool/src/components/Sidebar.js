@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { getDatabase, ref, onValue } from "firebase/database";
 
-const Sidebar = ({ chats, onSelectChat }) => (
-  <div className="chats-sidebar">
-    {chats.map((chat, index) => (
-      <div
-        key={index}
-        className="chat-item"
-        onClick={() => onSelectChat(chat)}
-      >
-        <img src="/assets/profile.jpg" alt="profile-photo" className="profile-photo" />
-        <div className="chat-info">
-          <h4>{chat.name}</h4>
-          <p>{chat.message}</p>
-        </div>
-        <span className="time">{chat.time}</span>
-      </div>
-    ))}
-  </div>
-);
+const Sidebar = ({ onSelectUser }) => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const database = getDatabase();
+    const profilesRef = ref(database, "profiles");
+
+    // Fetch user profiles
+    onValue(profilesRef, (snapshot) => {
+      const profiles = snapshot.val();
+      if (profiles) {
+        const userList = Object.keys(profiles).map((uid) => ({
+          uid,
+          ...profiles[uid],
+        }));
+        setUsers(userList);
+      }
+    });
+  }, []);
+
+  return (
+    <div className="sidebar">
+      <h2>Users</h2>
+      <ul>
+        {users.map((user) => (
+          <li key={user.uid} onClick={() => onSelectUser(user.uid)}>
+            {user.firstName} {user.lastName}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default Sidebar;
