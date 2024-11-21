@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Button, Table } from 'react-bootstrap';
 import { ref, get, set } from "firebase/database";
 import { CreateProfileModal } from './CreateProfileModal';
+import { formatTimeToRegular } from '../utils/timeUtils';
 
 function Profile({ user, database, onLogout }) {
     const navigate = useNavigate();
@@ -100,8 +101,8 @@ function Profile({ user, database, onLogout }) {
                             {daysOfWeek.map((day) => (
                                 <tr key={day}>
                                     <td><strong>{day}</strong></td>
-                                    <td>{profile.schedule[day]?.goToSchool || 'N/A'}</td>
-                                    <td>{profile.schedule[day]?.backHome || 'N/A'}</td>
+                                    <td>{formatTimeToRegular(profile.schedule[day]?.goToSchool)}</td>
+                                    <td>{formatTimeToRegular(profile.schedule[day]?.goToSchool)}</td>
                                 </tr>
                             ))}
                         </tbody>

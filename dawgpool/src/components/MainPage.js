@@ -5,10 +5,12 @@ import { ref, get } from "firebase/database";
 
 function MainPage({ user, database }) {
     const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+    const [showInfoModal, setShowInfoModal] = useState(false);
     const [profiles, setProfiles] = useState([]);
     const [availability, setAvailability] = useState([]);
     const [matchedProfiles, setMatchedProfiles] = useState([]);
     const [searchRegion, setSearchRegion] = useState('');
+    const [isFilterApplied, setIsFilterApplied] = useState(false);
 
     useEffect(() => {
         // Fetch all profiles from the database
@@ -25,6 +27,9 @@ function MainPage({ user, database }) {
     const onShowLoginPrompt = () => {
         setShowLoginPrompt(true);
     };
+
+    const handleShowInfoModal = () => setShowInfoModal(true);
+    const handleCloseInfoModal = () => setShowInfoModal(false);
 
 
     // Function to convert time string
@@ -88,6 +93,7 @@ function MainPage({ user, database }) {
     // Handle form submission for availability filtering
     const handleAvailabilitySubmit = (event) => {
         event.preventDefault();
+        setIsFilterApplied(true);
         filterSchedules();
     };
 
@@ -105,6 +111,7 @@ function MainPage({ user, database }) {
     // Handle search bar input change
     const handleSearchChage = (e) => {
         setSearchRegion(e.target.value);
+        setIsFilterApplied(true);
         // Filter profiles by region
         const filterdProfiles = profiles.filter(profile =>
             profile.region.toLowerCase().includes(e.target.value.toLowerCase())
@@ -131,6 +138,14 @@ function MainPage({ user, database }) {
                         placeholder="Enter city..."
                         />
                     </label>
+                    <Button
+                        aria-label="Information Button"
+                        variant="btn btn-outline-secondary"
+                        className="ms-4"
+                        onClick={handleShowInfoModal}
+                    >
+                        ℹ️
+                    </Button>
                 </div>
 
                 {/* Availability Form */}
@@ -177,19 +192,23 @@ function MainPage({ user, database }) {
                 </form>
 
                 {/* Matched Profiles Display */}
-                <h2>Matched Profiles Based on Preferred Commute Time</h2>
-                <div className="row row-cols-1 row-cols-md-2 g-5">
-                    {matchedProfiles.length > 0 ? (
-                        matchedProfiles.map((profile, index) => (
-                            <ProfileCard user={user} key={index} profile={profile} />
-                        ))
+                <div>
+                    <h2 className="mt-4 mb-3">Matched Profiles Based on Preferred Commute Time</h2>
+                    {!isFilterApplied ? (
+                        <p className="text-muted mb-5">You haven't selected your matched information yet.</p>
+                    ) : matchedProfiles.length > 0 ? (
+                        <div className="row row-cols-1 row-cols-md-2 g-5">
+                            {matchedProfiles.map((profile, index) => (
+                                <ProfileCard user={user} key={index} profile={profile} />
+                            ))}
+                        </div>
                     ) : (
-                        <p>No matching profiles found.</p>
+                        <p className="text-muted mb-5">No matching profiles found.</p>
                     )}
                 </div>
 
                 {/* All Profiles Display */}
-                <h2>All Profiles</h2>
+                <h2 className="mt-4">All Profiles</h2>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {profiles.map((profile, index) => (
                         <ProfileCard user={user} key={index} profile={profile}  onShowLoginPrompt={onShowLoginPrompt}/>
@@ -207,7 +226,27 @@ function MainPage({ user, database }) {
                     <Button variant="primary" onClick={() => window.location.href = '/login'}>Go to Login</Button>
                 </Modal.Footer>
             </Modal>
+
+            <Modal show={showInfoModal} onHide={handleCloseInfoModal} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>How to Use DAWGPOOL</Modal.Title>
+                </Modal.Header>
+                    <Modal.Body>
+                        <p>Welcome to DAWGPOOL! Here’s how to use the website:</p>
+                        <ol>
+                            <li>Search for carpool profiles by entering your city in the search bar.</li>
+                            <li>Set your preferred commute time by adding time slots for your availability.</li>
+                            <li>Click "Find Matches" to view profiles with overlapping schedules.</li>
+                            <li>Browse through all available profiles to find your ideal carpool buddy.</li>
+                            <li>Log in to access additional features like contacting profiles.</li>
+                        </ol>
+                    </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseInfoModal}>Close</Button>
+                </Modal.Footer>
+            </Modal>
         </div>
+        
     );
 }
 

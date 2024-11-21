@@ -1,93 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { getDatabase, ref, onValue, query, orderByChild } from "firebase/database";
 
-const ChatView = ({ selectedChat }) => {
-  const [message, setMessage] = useState('');
+const ChatView = ({ selectedUser, currentUser }) => {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Function to handle sending a message
-  const handleSendMessage = () => {
-    if (message.trim()) {
-      setMessages([...messages, { text: message, sender: 'You' }]);
-      setMessage('');
-    }
-  };
+  useEffect(() => {
+    if (!selectedUser) return;
+
+    const database = getDatabase();
+    const conversationId = [currentUser.uid, selectedUser].sort().join("_");
+    const messagesRef = query(
+      ref(database, `messages/${conversationId}`),
+      orderByChild("timestamp")
+    );
+
+    // Listen for message updates
+    onValue(messagesRef, (snapshot) => {
+      const data = snapshot.val();
+      const messageList = data ? Object.values(data) : [];
+      setMessages(messageList);
+      setLoading(false); // Data has been loaded
+    });
+  }, [selectedUser, currentUser]);
 
   return (
     <div className="chat-view">
-      {selectedChat ? (
-        <>
-          {/* Chat Header */}
-          <div className="chat-header">
-            <img
-              src={selectedChat.img || 'https://via.placeholder.com/80'}
-              alt="Selected Profile"
-              id="chat-profile-img"
-            />
-            <div className="profile-info">
-              <h2 id="chat-profile-name">
-                {selectedChat.name || `${selectedChat.firstName} ${selectedChat.lastName}`}
-              </h2>
-              <span id="chat-profile-year">Year: {selectedChat.year || 'N/A'}</span>
-              <a href="#" className="schedule-link">
-                Click for Schedule
-              </a>
-            </div>
-          </div>
-
-          {/* Messages Container */}
-          <div className="messages" id="messages">
-            {messages.length > 0 ? (
-              messages.map((msg, index) => (
-                <div key={index} className="message">
-                  <strong>{msg.sender}:</strong> {msg.text}
-                </div>
-              ))
-            ) : (
-              <p>No messages yet. Start the conversation!</p>
-            )}
-          </div>
-
-          {/* Message Input Box */}
-          <div className="message-input-box bg-light p-3 d-flex" style={{ position: 'relative' }}>
-            <input
-              type="text"
-              className="form-control me-2"
-              id="message-input"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Type your message..."
-            />
-            <button
-              onClick={handleSendMessage}
-              className="btn btn-primary"
-              id="send-message"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-arrow-right"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M14.146 8.354a.5.5 0 0 0 0-.708l-6-6a.5.5 0 1 0-.708.708L12.293 8H1.5a.5.5 0 0 0 0 1h10.793l-4.855 4.854a.5.5 0 0 0 .708.708l6-6z"
-                />
-              </svg>
-            </button>
-          </div>
-        </>
+      <h2>Chat</h2>
+      {loading ? (
+        <p>Loading messages...</p>
+      ) : selectedUser ? (
+        <ul>
+          {messages.map((message, index) => (
+            <li key={index} className={message.senderId === currentUser.uid ? "sent" : "received"}>
+              <p>{message.text}</p>
+              <small>{new Date(message.timestamp).toLocaleString()}</small>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <div>Please select a chat to start messaging.</div>
+        <p>Select a user to start chatting</p>
       )}
     </div>
   );
 };
 
 export default ChatView;
-
-
-
-
-
