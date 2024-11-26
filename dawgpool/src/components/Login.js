@@ -37,7 +37,11 @@ export function LoginPage({ onGoogleSignIn }) {
             Login with UW Email
           </button>
           <div className="mt-3">
-            <Link to="/" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" aria-label="Continue browsing the main page">
+            <Link to="/" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" aria-label="Continue browsing the main page"
+            style={{
+              color: "rgb(0, 51, 102)",
+              backgroundColor: "rgb(255, 255, 204)",
+            }}>
               Continue browsing main page
             </Link>
           </div>
