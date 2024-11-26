@@ -249,7 +249,7 @@ function MainPage({ user, database }) {
                     {!isFilterApplied ? (
                         <p className="text-muted mb-5">You haven't selected your matched information yet.</p>
                     ) : matchedProfiles.length > 0 ? (
-                        <div className="row row-cols-1 row-cols-md-2 g-5">
+                        <div className="row col-12 row-cols-md-2 g-5">
                             {matchedProfiles.map((profile, index) => (
                                 <ProfileCard user={user} key={index} profile={profile} />
                             ))}
