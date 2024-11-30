@@ -21,17 +21,17 @@ Our project focuses on the **United Nations Sustainable Development Goal 11 (SDG
 * Kevin Tat
 
 ## Project Features
-* Verification UI page (fill out SID) for data safety concerns;
+* Verification UI page (fill out SID) for data safety concerns
 * A dashboard that displays routes and schedule times in the user’s area after the user has put their information (some sort of filtered search)
 * Messaging functionality for users to coordinate with each other
 * Profile registration
 * User set up information page (Where user lives/starting area, course schedule)
 
 ## Test Protocol
-[DAWGPOOL - Test Protocol](https://docs.google.com/document/d/1ef0123rIvZqWbsX1bZvfBQcCGYpn6cyOSQaJMGNBmu0/edit?usp=sharing)
+[DAWGPOOL - Test Protocol](Testing_Protocol.pdf)
 
 ## User Persona
-[DAWGPOOL - User Persona](https://www.figma.com/design/mB8c3aOJaijj4SWSfetSkh/442%3A-User-Persona?node-id=0-1)
+[DAWGPOOL - User Persona](User_Persona_PDF.pdf)
 
 ## Tech Stack
 * Bootstrap/CSS
