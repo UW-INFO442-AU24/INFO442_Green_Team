@@ -28,10 +28,10 @@ Our project focuses on the **United Nations Sustainable Development Goal 11 (SDG
 * User set up information page (Where user lives/starting area, course schedule)
 
 ## Test Protocol
-[DAWGPOOL - Test Protocol](Testing_Protocol.pdf)
+[DAWGPOOL - Test Protocol](https://github.com/UW-INFO442-AU24/INFO442_Green_Team/blob/main/Testing%20Protocol.pdf)
 
 ## User Persona
-[DAWGPOOL - User Persona](User_Persona_PDF.pdf)
+[DAWGPOOL - User Persona](https://github.com/UW-INFO442-AU24/INFO442_Green_Team/blob/main/User%20Persona%20PDF.pdf)
 
 ## Tech Stack
 * Bootstrap/CSS
