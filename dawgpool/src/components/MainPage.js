@@ -131,7 +131,7 @@ function MainPage({ user, database }) {
             <div className="container-fluid">
                 <header className="text-center mb-4 d-flex justify-content-center align-items-center">
                     <img src="assets/dawgprint.png" alt="dawgprint" className="heading-logo me-2 mb-3" />
-                    <h1 className="mb-3"><strong>Find your Carpool Dawg!</strong></h1>
+                    <h2 className="mb-3"><strong>Find your Carpool Dawg!</strong></h2>
                 </header>
 
                 {/* Availability Form */}
@@ -139,7 +139,7 @@ function MainPage({ user, database }) {
                 {/* Search Bar */}
                 <div className="search-bar col">
                     <label>
-                        <h2>Search by city:</h2>
+                        <h3>Search by city:</h3>
                         <input
                         type="text"
                         value={searchRegion}
@@ -157,7 +157,7 @@ function MainPage({ user, database }) {
                     </Button>
                     </div>
                     <div className="availiability-section col">
-                        <h2 className="my-3">Set Your Preferred Commute Time</h2>
+                        <h3 className="my-3">Set Your Preferred Commute Time</h3>
                         <div>
                             <form onSubmit={handleAvailabilitySubmit}>
                                 {availability.map((slot, index) => (
@@ -245,7 +245,7 @@ function MainPage({ user, database }) {
 
                 {/* Matched Profiles Display */}
                 <div className="matching-section">
-                    <h2 className="my-4">Matched Profiles Based on Preferred Commute Time</h2>
+                    <h3 className="my-4">Matched Profiles Based on Preferred Commute Time</h3>
                     {!isFilterApplied ? (
                         <p className="text-muted mb-5">You haven't selected your matched information yet.</p>
                     ) : matchedProfiles.length > 0 ? (
@@ -260,7 +260,7 @@ function MainPage({ user, database }) {
                 </div>
 
                 {/* All Profiles Display */}
-                <h2 className="mt-4">All Profiles</h2>
+                <h3 className="mt-4">All Profiles</h3>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {profiles.map((profile, index) => (
                         <ProfileCard user={user} key={index} profile={profile}  onShowLoginPrompt={onShowLoginPrompt}/>
