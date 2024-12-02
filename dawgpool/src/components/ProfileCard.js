@@ -40,14 +40,11 @@ export function ProfileCard({ user, profile, onShowLoginPrompt }) {
                                 alt="Profile" 
                                 className="profile-pic mb-3" 
                             />
-                            <h5 className="card-title mb-1">{profile.firstName} {profile.lastName}</h5>
+                            <h4 className="card-title mb-1">{profile.firstName} {profile.lastName}</h4>
                             <p className="school-year text-muted mb-1">{profile.year}</p>
                             <p className="driver-status text-muted text-nowrap"><strong>
                                 {profile.isDriver ? "Driver" : "Passenger"}
                             </strong></p>
-                            <div className="stars">
-                                <span>★ ★ ★ ★ ☆</span>
-                            </div>
                             <div className="row mt-2">
                                 <Button variant="outline-secondary" onClick={handleProfileClick} className="mt-1">Profile</Button>
                                 <Button variant="outline-secondary" onClick={handleMessageClick} className="mt-2">Message</Button>

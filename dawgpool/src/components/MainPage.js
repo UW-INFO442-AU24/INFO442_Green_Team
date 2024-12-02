@@ -99,12 +99,19 @@ function MainPage({ user, database }) {
 
     // Handle adding a new time slot to availability
     const handleAddAvailability = () => {
-        setAvailability([...availability, { day: '', start: '', end: '' }]);
+        setAvailability([...availability, { day: '', startHour: '', startMinute: '', startPeriod: 'AM', endHour: '', endMinute: '', endPeriod: 'AM' }]);
     };
 
     const handleAvailabilityChange = (index, field, value) => {
         const newAvailability = [...availability];
-        newAvailability[index][field] = value; // Directly store the value in 24-hour format
+        newAvailability[index][field] = value;
+
+        if (['startHour', 'startMinute', 'startPeriod', 'endHour', 'endMinute', 'endPeriod'].includes(field)) {
+            const slot = newAvailability[index];
+            slot.start = `${slot.startHour}:${slot.startMinute} ${slot.startPeriod}`;
+            slot.end = `${slot.endHour}:${slot.endMinute} ${slot.endPeriod}`;
+        }
+
         setAvailability(newAvailability);
     };
 
@@ -124,7 +131,7 @@ function MainPage({ user, database }) {
             <div className="container-fluid">
                 <header className="text-center mb-4 d-flex justify-content-center align-items-center">
                     <img src="assets/dawgprint.png" alt="dawgprint" className="heading-logo me-2 mb-3" />
-                    <h1 className="mb-3"><strong>Find your Carpool Dawg!</strong></h1>
+                    <h2 className="mb-3"><strong>Find your Carpool Dawg!</strong></h2>
                 </header>
 
                 {/* Availability Form */}
@@ -132,7 +139,7 @@ function MainPage({ user, database }) {
                 {/* Search Bar */}
                 <div className="search-bar col">
                     <label>
-                        <h2>Search by city:</h2>
+                        <h3>Search by city:</h3>
                         <input
                         type="text"
                         value={searchRegion}
@@ -149,8 +156,8 @@ function MainPage({ user, database }) {
                         ℹ️
                     </Button>
                     </div>
-                    <div className="availiability-sectio col">
-                        <h2 className="my-3">Set Your Preferred Commute Time</h2>
+                    <div className="availiability-section col">
+                        <h3 className="my-3">Set Your Preferred Commute Time</h3>
                         <div>
                             <form onSubmit={handleAvailabilitySubmit}>
                                 {availability.map((slot, index) => (
@@ -173,19 +180,59 @@ function MainPage({ user, database }) {
                                         </label>
                                         <label>
                                             Start Time:
-                                            <input
-                                                type="time"
-                                                value={slot.start}
-                                                onChange={(e) => handleAvailabilityChange(index, 'start', e.target.value)}
-                                            />
+                                            <div>
+                                                <select
+                                                    value={slot.startHour || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'startHour', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 12 }, (_, i) => (
+                                                        <option key={i} value={i + 1}>{i + 1}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.startMinute || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'startMinute', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 60 }, (_, i) => (
+                                                        <option key={i} value={i.toString().padStart(2, '0')}>{i.toString().padStart(2, '0')}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.startPeriod || 'AM'}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'startPeriod', e.target.value)}
+                                                >
+                                                    <option value="AM">AM</option>
+                                                    <option value="PM">PM</option>
+                                                </select>
+                                            </div>
                                         </label>
                                         <label>
                                             End Time:
-                                            <input
-                                                type="time"
-                                                value={slot.end}
-                                                onChange={(e) => handleAvailabilityChange(index, 'end', e.target.value)}
-                                            />
+                                            <div>
+                                                <select
+                                                    value={slot.endHour || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'endHour', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 12 }, (_, i) => (
+                                                        <option key={i} value={i + 1}>{i + 1}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.endMinute || ''}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'endMinute', e.target.value)}
+                                                >
+                                                    {Array.from({ length: 60 }, (_, i) => (
+                                                        <option key={i} value={i.toString().padStart(2, '0')}>{i.toString().padStart(2, '0')}</option>
+                                                    ))}
+                                                </select>
+                                                <select
+                                                    value={slot.endPeriod || 'AM'}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'endPeriod', e.target.value)}
+                                                >
+                                                    <option value="AM">AM</option>
+                                                    <option value="PM">PM</option>
+                                                </select>
+                                            </div>
                                         </label>
                                     </div>
                                 ))}
@@ -198,11 +245,11 @@ function MainPage({ user, database }) {
 
                 {/* Matched Profiles Display */}
                 <div className="matching-section">
-                    <h2 className="my-4">Matched Profiles Based on Preferred Commute Time</h2>
+                    <h3 className="my-4">Matched Profiles Based on Preferred Commute Time</h3>
                     {!isFilterApplied ? (
                         <p className="text-muted mb-5">You haven't selected your matched information yet.</p>
                     ) : matchedProfiles.length > 0 ? (
-                        <div className="row row-cols-1 row-cols-md-2 g-5">
+                        <div className="row col-12 row-cols-md-2 g-5">
                             {matchedProfiles.map((profile, index) => (
                                 <ProfileCard user={user} key={index} profile={profile} />
                             ))}
@@ -213,7 +260,7 @@ function MainPage({ user, database }) {
                 </div>
 
                 {/* All Profiles Display */}
-                <h2 className="mt-4">All Profiles</h2>
+                <h3 className="mt-4">All Profiles</h3>
                 <div className="row row-cols-1 row-cols-md-2 g-5">
                     {profiles.map((profile, index) => (
                         <ProfileCard user={user} key={index} profile={profile}  onShowLoginPrompt={onShowLoginPrompt}/>

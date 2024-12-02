@@ -39,7 +39,7 @@ function Profile({ user, database, onLogout }) {
             <div className="content-wrapper">
                 <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
                     <div className="row text-center">
-                        <h3>You are not logged in</h3>
+                        <h2>You are not logged in</h2>
                     </div>
                     <div className="row mt-3">
                         <Button onClick={() => navigate('/login')} className="btn btn-primary">
@@ -116,7 +116,7 @@ function Profile({ user, database, onLogout }) {
             ) : (
                 <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
                     <div className="row text-center">
-                        <h3>You have not created a profile yet</h3>
+                        <h2>You have not created a profile yet</h2>
                     </div>
                     <div className="row mt-3">
                         <Button variant="primary" onClick={() => setShowCreateProfileModal(true)}>Create Profile</Button>
