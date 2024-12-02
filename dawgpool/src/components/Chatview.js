@@ -37,17 +37,7 @@ const ChatView = ({ selectedUser, currentUser }) => {
   // Create a simple stars display based on a rating
   // Create a simple stars display based on a rating
 // Create a simple stars display based on a rating
-const renderStars = (rating) => {
-  const stars = [];
-  for (let i = 0; i < 5; i++) {
-    stars.push(
-      <span key={i} style={{ marginRight: "5px" }}>
-        {i < rating ? "★" : "☆"}
-      </span>
-    );
-  }
-  return stars; // Return the stars as an array of JSX elements
-};
+
 
 
 
@@ -72,9 +62,6 @@ const renderStars = (rating) => {
           </h2>
 
           {/* Stars below name */}
-          <div className="user-rating">
-            {renderStars(selectedUser.rating || 0)} {/* Display stars based on rating */}
-          </div>
         </div>
       </div>
 
