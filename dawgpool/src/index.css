@@ -593,22 +593,81 @@ footer {
     margin-top: 5px;
 }
 
-.messages {
-    flex: 1;
-    overflow-y: auto;
-}
+/* Make sure the container takes full height */
 .messaging-container {
     display: flex;
-    height: calc(100vh - 80px);
-}
-/* Message Input Area */
-.message-input {
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .messages {
+    flex: 1; /* Makes the message area take available space */
+    overflow-y: auto; /* Enables scrolling for messages */
+    padding-bottom: 60px; /* Add space for the fixed message input at the bottom */
+  }
+  
+  .message-input-box {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    border-top: 1px solid #ddd;
     background-color: #f5f5f5;
-}
+    border-top: 1px solid #ddd;
+    position: fixed; /* Fixes the input at the bottom */
+    bottom: 0; /* Sticks it to the bottom */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Makes sure the input bar is above other content */
+  }
+  
+/* Basic styles for the messaging app layout */
+.messaging-app {
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+  }
+  
+  .sidebar {
+    width: 300px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .messaging-bar {
+    margin-top: auto; /* Push the messaging input bar to the bottom */
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+  }
+  
+  .message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  .send-button {
+    background-color: #0078d4;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .send-button:hover {
+    background-color: #005a8c;
+  }
 
 .message-input input[type="text"] {
     flex: 1;
@@ -619,6 +678,14 @@ footer {
     font-size: 16px;
     outline: none;
 }
+.user-info {
+    display: flex;
+    flex-direction: column; /* Align the name and rating vertically */
+    justify-content: flex-start; /* Align items within the container to the top */
+    align-items: flex-start; /* Align the items (name and rating) to the left */
+    width: 100%; /* Ensure the container takes the full available width */
+  }
+  
 
 .message-input button {
     background-color: #4b2e83;
@@ -753,7 +820,48 @@ footer {
   .btn-details:hover {
     background-color: #666;
   }
-
+/* Chat message container */
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .message-content {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+  
+  .sent .message-content {
+    background-color: #4b2e83;
+    color: white;
+    align-self: flex-end;
+  }
+  
+  .received .message-content {
+    background-color: #f1f1f1;
+    color: black;
+    align-self: flex-start;
+  }
+  
+  small {
+    font-size: 0.8rem;
+    color: #888;
+    display: block;
+    margin-top: 5px;
+  }
+  .message-bubble {
+    max-width: 75%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    word-wrap: break-word;
+    display: inline-block;
+  }
+  
 
 /* Responsive */
 @media (max-width: 1024px) {

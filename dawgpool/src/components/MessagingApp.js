@@ -14,7 +14,7 @@ const MessagingApp = () => {
     const database = getDatabase();
     const auth = getAuth();
 
-    // fetch the current authenticated user
+    // Fetch the current authenticated user
     const fetchCurrentUser = async () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -24,14 +24,14 @@ const MessagingApp = () => {
             displayName: user.displayName,
           });
         } else {
-          setCurrentUser(null); //  no user is logged in
+          setCurrentUser(null); // No user is logged in
         }
       });
     };
 
     fetchCurrentUser();
 
-    // fetch the list of users from the database
+    // Fetch the list of users from the database
     const profilesRef = ref(database, "profiles");
     onValue(profilesRef, (snapshot) => {
       const profiles = snapshot.val();
@@ -53,19 +53,18 @@ const MessagingApp = () => {
     <div className="messaging-app">
       <Sidebar users={users} onSelectUser={handleSelectUser} />
 
-      {selectedUser ? (
-        <>
-          <ChatView selectedUser={selectedUser} currentUser={currentUser} />
-          <Messaging selectedUser={selectedUser} currentUser={currentUser} />
-        </>
-      ) : (
-        <p>Please select a user to start a conversation</p>
-      )}
+      <div className="chat-area">
+        {selectedUser ? (
+          <>
+            <ChatView selectedUser={selectedUser} currentUser={currentUser} />
+            <Messaging selectedUser={selectedUser} currentUser={currentUser} />
+          </>
+        ) : (
+          <p>Please select a user to start a conversation</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default MessagingApp;
-
-
-
