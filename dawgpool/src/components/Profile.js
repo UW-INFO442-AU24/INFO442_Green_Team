@@ -88,7 +88,7 @@ function Profile({ user, database, onLogout }) {
                         </div>
                     )}
 
-                    <h4 className="mt-4">Schedule</h4>
+                    <h3 className="mt-4">Schedule</h3>
                     <Table bordered className="mt-2">
                         <thead>
                             <tr>
