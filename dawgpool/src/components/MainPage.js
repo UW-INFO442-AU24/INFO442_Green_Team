@@ -11,6 +11,9 @@ function MainPage({ user, database }) {
     const [matchedProfiles, setMatchedProfiles] = useState([]);
     const [searchRegion, setSearchRegion] = useState('');
     const [isFilterApplied, setIsFilterApplied] = useState(false);
+    const regionFilteredProfiles = profiles.filter(profile => 
+        profile.region === searchRegion
+    );
 
     useEffect(() => {
         // Fetch all profiles from the database
@@ -79,7 +82,7 @@ function MainPage({ user, database }) {
 
     // Filter profiles based on overlap
     const filterSchedules = () => {
-        const matched = profiles.filter(profile => 
+        const matched = regionFilteredProfiles.filter(profile => 
             profile.schedule && hasOverlap(availability, profile.schedule)
         );
         setMatchedProfiles(matched);
@@ -303,3 +306,8 @@ function MainPage({ user, database }) {
 }
 
 export default MainPage;
+
+
+
+
+
