@@ -41,7 +41,7 @@ const Sidebar = ({ onSelectUser }) => {
           />
 
           <div className="chat-info">
-            <h4>{user.firstName} {user.lastName}</h4>
+            <h3>{user.firstName} {user.lastName}</h3>
             <p>{user.status || "Available"}</p>
           </div>
         </div>
