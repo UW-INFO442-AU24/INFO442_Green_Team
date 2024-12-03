@@ -1,5 +1,7 @@
 import React from 'react';
 import { Modal, Button, Table } from 'react-bootstrap';
+import { formatTimeToRegular } from '../utils/timeUtils';
+
 
 export function ProfileDetailModal({ show, onHide, profile }) {
     if (!profile) return null;
@@ -31,8 +33,8 @@ export function ProfileDetailModal({ show, onHide, profile }) {
                         {daysOfWeek.map((day) => (
                             <tr key={day}>
                                 <td><strong>{day}</strong></td>
-                                <td>{profile.schedule[day]?.goToSchool || 'N/A'}</td>
-                                <td>{profile.schedule[day]?.backHome || 'N/A'}</td>
+                                <td>{formatTimeToRegular(profile.schedule[day]?.goToSchool)}</td>
+                                <td>{formatTimeToRegular(profile.schedule[day]?.backHome)}</td>
                             </tr>
                         ))}
                     </tbody>
