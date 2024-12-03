@@ -22,30 +22,21 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
 
     useEffect(() => {
         if (initialData) {
-            const convertTo12HourFormat = (time) => {
-                if (!time) return '';
-                const [hourMinute, period] = time.split(' ');
-                const [hour, minute] = hourMinute.split(':').map(Number);
-                return `${hour}:${minute.toString().padStart(2, '0')} ${period}`;
+            const completeSchedule = {
+                Monday: { goToSchool: '', backHome: '' },
+                Tuesday: { goToSchool: '', backHome: '' },
+                Wednesday: { goToSchool: '', backHome: '' },
+                Thursday: { goToSchool: '', backHome: '' },
+                Friday: { goToSchool: '', backHome: '' },
+                ...initialData.schedule,
             };
-
-            const convertScheduleTo12Hour = (schedule) => {
-                const convertedSchedule = {};
-                for (const day in schedule) {
-                    convertedSchedule[day] = {
-                        goToSchool: convertTo12HourFormat(schedule[day]?.goToSchool),
-                        backHome: convertTo12HourFormat(schedule[day]?.backHome),
-                    };
-                }
-                return convertedSchedule;
-            };
-
-            setFormData({
+            const updatedFormData = {
                 ...initialData,
-                schedule: convertScheduleTo12Hour(initialData.schedule),
-            });
+                schedule: completeSchedule,
+            };
+            setFormData(updatedFormData);
         }
-    }, [initialData]);
+    }, [initialData]);    
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -53,38 +44,17 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
     };
 
     const handleScheduleChange = (day, field, value) => {
-        const newSchedule = { ...formData.schedule[day] };
-
-        if (field.includes('Hour') || field.includes('Minute') || field.includes('Period')) {
-            newSchedule[field] = value;
-
-            if (
-                newSchedule.goToSchoolHour &&
-                newSchedule.goToSchoolMinute &&
-                newSchedule.goToSchoolPeriod
-            ) {
-                newSchedule.goToSchool = `${newSchedule.goToSchoolHour}:${newSchedule.goToSchoolMinute.padStart(2, '0')} ${newSchedule.goToSchoolPeriod}`;
-            }
-
-            if (
-                newSchedule.backHomeHour &&
-                newSchedule.backHomeMinute &&
-                newSchedule.backHomePeriod
-            ) {
-                newSchedule.backHome = `${newSchedule.backHomeHour}:${newSchedule.backHomeMinute.padStart(2, '0')} ${newSchedule.backHomePeriod}`;
-            }
-        } else {
-            newSchedule[field] = value;
-        }
-
         setFormData({
             ...formData,
             schedule: {
                 ...formData.schedule,
-                [day]: newSchedule,
+                [day]: {
+                    ...formData.schedule[day],
+                    [field]: value,
+                },
             },
         });
-    };
+    };    
 
     const handleDriverCheckbox = () => {
         setFormData({ ...formData, isDriver: !formData.isDriver });
@@ -195,77 +165,23 @@ export function CreateProfileModal({ show, onHide, onSave, initialData }) {
                                 <Form.Label>{day}</Form.Label>
                             </Col>
                             <Col>
+                                <Row><p>Go to School</p></Row>
                                 <div>
-                                    <select
-                                        value={formData.schedule[day]?.goToSchoolHour || ''}
-                                        onChange={(e) =>
-                                            handleScheduleChange(day, 'goToSchoolHour', e.target.value)
-                                        }
-                                    >
-                                        {Array.from({ length: 12 }, (_, i) => (
-                                            <option key={i} value={i + 1}>
-                                                {i + 1}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <select
-                                        value={formData.schedule[day]?.goToSchoolMinute || ''}
-                                        onChange={(e) =>
-                                            handleScheduleChange(day, 'goToSchoolMinute', e.target.value)
-                                        }
-                                    >
-                                        {Array.from({ length: 60 }, (_, i) => (
-                                            <option key={i} value={i.toString().padStart(2, '0')}>
-                                                {i.toString().padStart(2, '0')}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <select
-                                        value={formData.schedule[day]?.goToSchoolPeriod || 'AM'}
-                                        onChange={(e) =>
-                                            handleScheduleChange(day, 'goToSchoolPeriod', e.target.value)
-                                        }
-                                    >
-                                        <option value="AM">AM</option>
-                                        <option value="PM">PM</option>
-                                    </select>
-                                </div>
+                                    <input
+                                        type="time"
+                                        value={formData.schedule[day]?.goToSchool || ''}
+                                        onChange={(event) => handleScheduleChange(day, 'goToSchool', event.target.value)}
+                                    />
+                                </div>             
                             </Col>
                             <Col>
+                                <Row><p>Back Home</p></Row>
                                 <div>
-                                    <select
-                                        value={formData.schedule[day]?.backHomeHour || ''}
-                                        onChange={(e) =>
-                                            handleScheduleChange(day, 'backHomeHour', e.target.value)
-                                        }
-                                    >
-                                        {Array.from({ length: 12 }, (_, i) => (
-                                            <option key={i} value={i + 1}>
-                                                {i + 1}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <select
-                                        value={formData.schedule[day]?.backHomeMinute || ''}
-                                        onChange={(e) =>
-                                            handleScheduleChange(day, 'backHomeMinute', e.target.value)
-                                        }
-                                    >
-                                        {Array.from({ length: 60 }, (_, i) => (
-                                            <option key={i} value={i.toString().padStart(2, '0')}>
-                                                {i.toString().padStart(2, '0')}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <select
-                                        value={formData.schedule[day]?.backHomePeriod || 'AM'}
-                                        onChange={(e) =>
-                                            handleScheduleChange(day, 'backHomePeriod', e.target.value)
-                                        }
-                                    >
-                                        <option value="AM">AM</option>
-                                        <option value="PM">PM</option>
-                                    </select>
+                                    <input
+                                        type="time"
+                                        value={formData.schedule[day]?.backHome || ''}
+                                        onChange={(event) => handleScheduleChange(day, 'backHome', event.target.value)}
+                                    />
                                 </div>
                             </Col>
                         </Row>
