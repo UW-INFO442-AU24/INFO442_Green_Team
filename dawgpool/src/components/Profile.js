@@ -65,7 +65,7 @@ function Profile({ user, database, onLogout }) {
                     <h2 className="mb-4 text-center w-100">Profile Information</h2>
 
                     <div className="mb-3">
-                        <h5><strong>Name:</strong> {profile.firstName} {profile.lastName}</h5>
+                        <p><strong>Name:</strong> {profile.firstName} {profile.lastName}</p>
                     </div>
                     <div className="mb-3">
                         <p><strong>Year:</strong> {profile.year}</p>
@@ -102,7 +102,7 @@ function Profile({ user, database, onLogout }) {
                                 <tr key={day}>
                                     <td><strong>{day}</strong></td>
                                     <td>{formatTimeToRegular(profile.schedule[day]?.goToSchool)}</td>
-                                    <td>{formatTimeToRegular(profile.schedule[day]?.goToSchool)}</td>
+                                    <td>{formatTimeToRegular(profile.schedule[day]?.backHome)}</td>
                                 </tr>
                             ))}
                         </tbody>
